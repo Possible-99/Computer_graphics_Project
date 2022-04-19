@@ -267,7 +267,7 @@ int main()
 	// load models
 	// ----------------------------------------------------------
 
-	
+	Model piso("resources/objects/piso/piso.obj");
 
 
 
