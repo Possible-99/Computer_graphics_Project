@@ -267,8 +267,12 @@ int main()
 	// load models
 	// ----------------------------------------------------------
 
-	Model piso("resources/objects/piso/piso.obj");
-
+	Model piso("resources/objects/Christian/Parque/pisoFraccionamiento.obj");
+	Model EstacionBus("resources/objects/Christian/EstacionBus/EstacionBus.obj");
+	Model Bus("resources/objects/Christian/Bus/Bus.obj");
+	Model Arbol("resources/objects/Christian/Arbol/Arbol.obj");
+	Model ArbolMorado("resources/objects/Christian/ArbolMorado/ArbolMorado.obj");
+	//Model Perro("resources/objects/Pablo/perro/perroProto.obj");
 
 
 
@@ -360,11 +364,38 @@ int main()
 
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::translate(model, glm::vec3(0.0f, -5.25f, 0.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1500.0f));
+		model = glm::scale(model, glm::vec3(13.5f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		EstacionBus.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -30.0f, -1050.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		Bus.Draw(staticShader);
+
+		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(120.0f, 30.0f, 180.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		model = glm::rotate(model, glm::radians(-135.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		Perro.Draw(staticShader);*/
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(500.0f, 0.0f, 350.0f));
+		model = glm::scale(model, glm::vec3(1.5f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(5.0f), glm::vec3(380.0f, 0.0f, 800.0f));
+		model = glm::scale(model, glm::vec3(4.0f));
+		staticShader.setMat4("model", model);
+		ArbolMorado.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Map elements
