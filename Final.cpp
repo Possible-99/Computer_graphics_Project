@@ -1,5 +1,5 @@
 ﻿/*---------------------------------------------------------*/
-/* ----------------  Práctica                   -----------*/
+/* ----------------  PrÃ¡ctica                   -----------*/
 /*-----------------    2022-2   ---------------------------*/
 /*------------- Alumno:                     ---------------*/
 /*------------- No. Cuenta                  ---------------*/
@@ -44,7 +44,7 @@ GLFWmonitor *monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 10.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 50.0f, 90.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -70,7 +70,12 @@ bool	animacion = false,
 		recorrido1 = true,
 		recorrido2 = false,
 		recorrido3 = false,
-		recorrido4 = false;
+		recorrido4 = false,
+		recorrido5 = false,
+		recorrido6 = false,
+		recorrido7 = false,
+		recorrido8 = false,
+		recorrido9 = false;
 
 
 //Keyframes (Manipulación y dibujo)
@@ -175,10 +180,93 @@ void animate(void)
 		}
 	}
 
-	//Vehículo
+	//VehÃ­culo
 	if (animacion)
 	{
-		movAuto_z += 3.0f;
+		if (recorrido1) {
+			movAuto_x -= 10.0f;
+			if (movAuto_x <= -500.0f) {
+				recorrido1 = false;
+				recorrido2 = true;
+				movAuto_x = -500.0f;
+			}
+		}
+		if (recorrido2) {
+			movAuto_x -= 5.0f;
+			movAuto_z += 5.0f;
+			orienta = 50.0f;
+			if (movAuto_x <= -800.0f) {
+				recorrido2 = false;
+				recorrido3 = true;
+				movAuto_x = -800.0f;
+			}
+		}
+		if (recorrido3) {
+			movAuto_z += 10.0f;
+			orienta = 90.0f;
+			if (movAuto_z >= 1800.0f) {
+				recorrido3 = false;
+				recorrido4 = true;
+				movAuto_z = 1800.0f;
+			}
+		}
+		if (recorrido4) {
+			movAuto_x += 5.0f;
+			movAuto_z += 5.0f;
+			orienta = 140.0f;
+			if (movAuto_x >= -500.0f) {
+				recorrido4 = false;
+				recorrido5 = true;
+				movAuto_x = -500.0f;
+			}
+		}
+		if (recorrido5) {
+			movAuto_x += 10.0f;
+			orienta = 180.0f;
+			if (movAuto_x >= 500.0f) {
+				recorrido5 = false;
+				recorrido6 = true;
+				movAuto_x = 500.0f;
+			}
+		}
+		if (recorrido6) {
+			movAuto_x += 5.0f;
+			movAuto_z -= 5.0f;
+			orienta = 230.0f;
+			if (movAuto_x >= 800.0f) {
+				recorrido6 = false;
+				recorrido7 = true;
+				movAuto_x = 800.0f;
+			}
+		}
+		if (recorrido7) {
+			movAuto_z -= 10.0f;
+			orienta = 270.0f;
+			if (movAuto_z <= 230.0f) {
+				recorrido7 = false;
+				recorrido8 = true;
+				movAuto_z = 230.0f;
+			}
+		}
+		if (recorrido8) {
+			movAuto_x -= 5.0f;
+			movAuto_z -= 5.0f;
+			orienta = 310.0f;
+			if (movAuto_x <= 600.0f) {
+				recorrido8 = false;
+				recorrido9 = true;
+				movAuto_x = 600.0f;
+			}
+		}
+		if (recorrido9) {
+			movAuto_x -= 10.0f;
+			orienta = 360.0f;
+			if (movAuto_x <= 0.0f) {
+				recorrido9 = false;
+				recorrido1 = true;
+				movAuto_x = 0.0f;
+			}
+		}
 	}
 }
 
@@ -339,7 +427,7 @@ int main()
 		glm::mat4 model = glm::mat4(1.0f);
 		glm::mat4 tmp = glm::mat4(1.0f);
 		// view/projection transformations
-		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 10000.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100000.0f);
 		glm::mat4 view = camera.GetViewMatrix();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
@@ -362,22 +450,107 @@ int main()
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
 
-
+		/*********************************** PISO **********************************/
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -5.25f, 0.0f));
 		model = glm::scale(model, glm::vec3(15.0f));
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1500.0f));
-		model = glm::scale(model, glm::vec3(13.5f));
+		/****************************** ÃRBOLES PARQUE *****************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 0.0f, 315.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 0.0f, 860.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, 540.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 0.0f, 610.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 0.0f, 315.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 0.0f, 860.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, 540.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 0.0f, 610.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 0.0f, -330.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 0.0f, -860.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, -550.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 0.0f, -610.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 0.0f, -330.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 0.0f, -860.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, -550.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 0.0f, -610.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		staticShader.setMat4("model", model);
+		Arbol.Draw(staticShader);
+
+		/********************************* ESTACIÃ“N BUS ********************************/
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1350.0f));
+		model = glm::scale(model, glm::vec3(13.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		EstacionBus.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -30.0f, -1050.0f));
+		/************************************** BUS *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f+movAuto_x, -30.0f, -1060.0f+ movAuto_z));
 		model = glm::scale(model, glm::vec3(15.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Bus.Draw(staticShader);
 
@@ -387,15 +560,6 @@ int main()
 		staticShader.setMat4("model", model);
 		Perro.Draw(staticShader);*/
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(500.0f, 0.0f, 350.0f));
-		model = glm::scale(model, glm::vec3(1.5f));
-		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(5.0f), glm::vec3(380.0f, 0.0f, 800.0f));
-		model = glm::scale(model, glm::vec3(4.0f));
-		staticShader.setMat4("model", model);
-		ArbolMorado.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Map elements
