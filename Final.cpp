@@ -12,7 +12,8 @@
 #include <glm/gtc/matrix_transform.hpp>	//camera y model
 #include <glm/gtc/type_ptr.hpp>
 #include <time.h>
-
+#include <iostream>
+#include "include\irrKlang-1.6.0/irrKlang.h" //Audio Library
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>	//Texture
@@ -26,6 +27,10 @@
 #include <model.h>
 #include <Skybox.h>
 #include <iostream>
+
+//Starts the sound engine
+irrklang::ISoundEngine* Background = irrklang::createIrrKlangDevice();
+
 
 //#pragma comment(lib, "winmm.lib")
 
@@ -42,6 +47,9 @@ unsigned int SCR_HEIGHT = 600;
 GLFWmonitor *monitors;
 
 void getResolution(void);
+
+//Audio
+
 
 // camera
 Camera camera(glm::vec3(0.0f, 50.0f, 90.0f));
@@ -525,7 +533,6 @@ int main()
 	skyboxShader.use();
 	skyboxShader.setInt("skybox", 0);
 
-
 	// ----------------------------------------------------------
 	// load models
 	// ----------------------------------------------------------
@@ -540,6 +547,13 @@ int main()
 	Model tronco("resources/objects/Christian/Arbol/tronco.obj");
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
 
+	// Audio Configuration
+
+	if (!Background)
+		return 0;
+
+	Background->setSoundVolume(0.2);
+	Background->play2D("sound/Background.mp3", true);
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -613,7 +627,6 @@ int main()
 		glm::vec3 lightColor = glm::vec3(0.6f);
 		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
 		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.75f);
-		
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Character animation
@@ -982,6 +995,9 @@ int main()
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+
+	Background->drop(); // delete Background Sound Engine
+	return 0;
 
 	skybox.Terminate();
 
