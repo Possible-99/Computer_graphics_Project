@@ -541,7 +541,7 @@ int main()
 	Model EstacionBus("resources/objects/Christian/EstacionBus/EstacionBus.obj");
 	Model Bus("resources/objects/Christian/Bus/Bus.obj");
 	Model Arbol("resources/objects/Christian/Arbol/Arbol.obj");
-	Model ArbolMorado("resources/objects/Christian/ArbolMorado/ArbolMorado.obj");
+	Model ArbolVerde("resources/objects/Christian/arbolVerde/arbolVerde.obj");
 	//Model Perro("resources/objects/Pablo/perro/perroProto.obj");
 	Model hojasArbol("resources/objects/Christian/Arbol/hojasArbol.obj");
 	Model tronco("resources/objects/Christian/Arbol/tronco.obj");
@@ -647,7 +647,7 @@ int main()
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
 
-		/****************************** ÃRBOLES PARQUE *****************************/
+		/****************************** ÁRBOLES PARQUE *****************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 30.0f, 315.0f));				//árbol animado (zona 1)
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -829,7 +829,7 @@ int main()
 		staticShader.setMat4("model", model);
 		tronco.Draw(staticShader);
 
-		/********************************* HOJAS CAIDAS ********************************/
+		/********************************* HOJAS CAIDAS PARQUE ********************************/
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(590.0f, 400.0f + trasladaHojaY, 440.0f + trasladaHojaZ));					//hojas caídas (zona 1)
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
@@ -944,7 +944,39 @@ int main()
 		hojasCaidas.Draw(staticShader);
 
 
-		/********************************* ESTACIÃ“N BUS ********************************/
+		/****************************** ÁRBOLES ALREDEDOR *****************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1300.0f, 0.0f, 1000.0f)); 		//árbol alrededor (zona 1)
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		staticShader.setMat4("model", model);
+		ArbolVerde.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1600.0f, 0.0f, 1600.0f));			//árbol alrededor (zona 1)
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		staticShader.setMat4("model", model);
+		ArbolVerde.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1300.0f, 0.0f, 1000.0f)); 		//árbol alrededor (zona 2)
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		staticShader.setMat4("model", model);
+		ArbolVerde.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1600.0f, 0.0f, 1600.0f));			//árbol alrededor (zona 2)
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		staticShader.setMat4("model", model);
+		ArbolVerde.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1300.0f, 0.0f, -1000.0f)); 		//árbol alrededor (zona 3)
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		staticShader.setMat4("model", model);
+		ArbolVerde.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1600.0f, 0.0f, -1600.0f));			//árbol alrededor (zona 3)
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		staticShader.setMat4("model", model);
+		ArbolVerde.Draw(staticShader);
+
+
+		/********************************* ESTACIÓN BUS ********************************/
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1350.0f));
 		model = glm::scale(model, glm::vec3(13.0f));
