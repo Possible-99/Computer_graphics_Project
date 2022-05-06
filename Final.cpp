@@ -65,7 +65,13 @@ glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 //float y = 0.0f;
 float	movAuto_x = 0.0f,
 		movAuto_z = 0.0f,
-		orienta = 0.0f;
+		orienta = 0.0f,
+		orientaArbolX = 0.0f,
+		orientaArbolY = 0.0f,
+		orientaHojaX = 0.0f,
+		orientaHojaY = 0.0f,
+		trasladaHojaY = 0.0f,
+		trasladaHojaZ = 0.0f;
 bool	animacion = false,
 		recorrido1 = true,
 		recorrido2 = false,
@@ -75,7 +81,19 @@ bool	animacion = false,
 		recorrido6 = false,
 		recorrido7 = false,
 		recorrido8 = false,
-		recorrido9 = false;
+		recorrido9 = false,
+		estadoArbol1 = true,
+		estadoArbol2 = false,
+		estadoHoja1 = false,
+		estadoHoja2 = true,
+		estadoHoja3 = false,
+		estadoHoja4 = false,
+		estadoHoja5 = false,
+		estadoHoja6 = false,
+		estadoHoja7 = false,
+		estadoHoja8 = false,
+		estadoHoja9 = false,
+		estadoHoja10 = false;
 
 
 //Keyframes (Manipulación y dibujo)
@@ -267,6 +285,163 @@ void animate(void)
 				movAuto_x = 0.0f;
 			}
 		}
+
+
+		if (estadoArbol1){
+			orientaArbolX += 0.04f;
+			orientaArbolY += 0.04f;
+			if(orientaArbolX >= 2.0f){
+				estadoArbol1 = false;
+				estadoArbol2 = true;
+			}
+		} 
+		if (estadoArbol2){
+			orientaArbolX -= 0.04f;
+			orientaArbolY -= 0.04f;
+			if(orientaArbolX <= 0.0f){
+				estadoArbol1 = true;
+				estadoArbol2 = false;
+			}
+		}
+
+		/*
+		if (estadoHoja1){
+			trasladaHojaY = 0.0f;
+			estadoHoja1 = false;
+		}
+		if (estadoHoja2){
+			orientaHojaX += 1.0f;
+			orientaHojaY += 1.0f;
+			trasladaHojaY -= 0.2f;
+			if(orientaHojaX >= 9.0f){
+				estadoHoja2 = false;
+				estadoHoja3 = true;
+			}
+			if (trasladaHojaY <= -150.0f){
+				estadoHoja1 = true;
+			}
+		} 
+		if (estadoHoja3){
+			orientaHojaX -= 1.0f;
+			orientaHojaY -= 1.0f;
+			trasladaHojaY -= 0.2f;
+			if(orientaHojaX <= 0.0f){
+				estadoHoja2 = true;
+				estadoHoja3 = false;
+			}
+			if (trasladaHojaY <= -150.0f){
+				estadoHoja1 = true;
+			}
+		}
+		*/
+		if (estadoHoja1) {
+			orientaHojaX = 0.0f;
+			orientaHojaY = 0.0f;
+			trasladaHojaY = 0.0f;
+			trasladaHojaZ = 0.0f;
+			estadoHoja1 = false;
+		}
+		if (estadoHoja2) {
+			orientaHojaX -= 0.5f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaY -= 0.8f;
+			trasladaHojaZ -= 0.8f;
+			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f){
+				estadoHoja2 = false;
+				estadoHoja3 = true;
+			} 
+			if (trasladaHojaY <= -400.0f) {
+				estadoHoja1 = true;
+			}
+		}
+		if (estadoHoja3) {
+			orientaHojaX += 1.0f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaZ -= 0.8f;
+			if (orientaHojaX >= 5.0f){
+				estadoHoja3 = false;
+				estadoHoja4 = true;
+			} 
+		}
+		if (estadoHoja4) {
+			orientaHojaX += 0.5f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaY -= 0.8f;
+			trasladaHojaZ += 0.8f;
+			if (trasladaHojaZ >= 40.0f && orientaHojaX >= 5.0f){
+				estadoHoja4 = false;
+				estadoHoja5 = true;
+			}
+			if (trasladaHojaY <= -400.0f) {
+				estadoHoja1 = true;
+			}
+		}
+		if (estadoHoja5) {
+			orientaHojaX -= 1.0f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaZ += 0.8f;
+			if (orientaHojaX <= -5.0f){
+				estadoHoja5 = false;
+				estadoHoja6 = true;
+			} 
+		}
+		if (estadoHoja6) {
+			orientaHojaX -= 0.5f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaY -= 0.8f;
+			trasladaHojaZ -= 0.8f;
+			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f){
+				estadoHoja6 = false;
+				estadoHoja7 = true;
+			}
+			if (trasladaHojaY <= -400.0f) {
+				estadoHoja1 = true;
+			}
+		}
+		if (estadoHoja7) {
+			orientaHojaX += 1.0f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaZ -= 0.8f;
+			if (orientaHojaX >= 5.0f){
+				estadoHoja7 = false;
+				estadoHoja8 = true;
+			} 
+		}
+		if (estadoHoja8) {
+			orientaHojaX += 0.5f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaY -= 0.8f;
+			trasladaHojaZ += 0.8f;
+			if (trasladaHojaZ >= 40.0f && orientaHojaX >= 5.0f){
+				estadoHoja8 = false;
+				estadoHoja9 = true;
+			}
+			if (trasladaHojaY <= -400.0f) {
+				estadoHoja1 = true;
+			}
+		}
+		if (estadoHoja9) {
+			orientaHojaX -= 1.0f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaZ += 0.8f;
+			if (orientaHojaX <= -10.0f){
+				estadoHoja9 = false;
+				estadoHoja10 = true;
+			} 
+		}
+		if (estadoHoja10) {
+			orientaHojaX -= 0.5f;
+			orientaHojaY -= 0.5f;
+			trasladaHojaY -= 0.8f;
+			trasladaHojaZ -= 0.8f;
+			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f){
+				estadoHoja10 = false;
+				estadoHoja2 = true;
+			}
+			if (trasladaHojaY <= -400.0f) {
+				estadoHoja1 = true;
+			}
+		}
 	}
 }
 
@@ -361,7 +536,9 @@ int main()
 	Model Arbol("resources/objects/Christian/Arbol/Arbol.obj");
 	Model ArbolMorado("resources/objects/Christian/ArbolMorado/ArbolMorado.obj");
 	//Model Perro("resources/objects/Pablo/perro/perroProto.obj");
-
+	Model hojasArbol("resources/objects/Christian/Arbol/hojasArbol.obj");
+	Model tronco("resources/objects/Christian/Arbol/tronco.obj");
+	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
 
 
 	//Inicialización de KeyFrames
@@ -458,85 +635,301 @@ int main()
 		piso.Draw(staticShader);
 
 		/****************************** ÃRBOLES PARQUE *****************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 30.0f, 315.0f));				//árbol animado (zona 1)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 0.0f, 315.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 30.0f, 860.0f));				//árbol animado (zona 1)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 0.0f, 860.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, 540.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(330.0f, 30.0f, 540.0f));				//árbol animado (zona 1)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		hojasArbol.Draw(staticShader);
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(330.0f, 0.0f, 540.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		staticShader.setMat4("model", model);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 30.0f, 610.5f));				//árbol animado (zona 1)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 0.0f, 610.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 30.0f, 315.0f));				//árbol animado (zona 2)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 0.0f, 315.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 30.0f, 860.0f));				//árbol animado (zona 2)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 0.0f, 860.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 30.0f, 540.5f));				//árbol animado (zona 2)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, 540.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 30.0f, 610.5f));				//árbol animado (zona 2)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 0.0f, 610.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 30.0f, -330.0f));				//árbol animado (zona 3)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 0.0f, -330.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 30.0f, -860.0f));				//árbol animado (zona 3)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 0.0f, -860.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 30.0f, -550.5f));				//árbol animado (zona 3)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, -550.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 30.0f, -610.5f));				//árbol animado (zona 3)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 0.0f, -610.5f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.4f, 1.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 30.0f, -330.0f));				//árbol animado (zona 4)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 0.0f, -330.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 0.0f, -860.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.5f, 1.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 30.0f, -860.0f));				//árbol animado (zona 4)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		hojasArbol.Draw(staticShader);
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 0.0f, -860.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		staticShader.setMat4("model", model);
+		tronco.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, -550.5f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, -550.5f));					//árbol estático (zona 4)
 		model = glm::scale(model, glm::vec3(1.0f, 1.3f, 1.0f));
 		staticShader.setMat4("model", model);
 		Arbol.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 30.0f, -550.5f));				//árbol animado (zona 4)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, -550.5f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		staticShader.setMat4("model", model);
+		tronco.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 30.0f, -610.5f));				//árbol animado (zona 4)
+		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 0.0f, -610.5f));
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		staticShader.setMat4("model", model);
-		Arbol.Draw(staticShader);
+		tronco.Draw(staticShader);
+
+		/********************************* HOJAS CAIDAS ********************************/
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(590.0f, 400.0f + trasladaHojaY, 440.0f + trasladaHojaZ));					//hojas caídas (zona 1)
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(310.0f, 250.0f + trasladaHojaY, 700.0f + trasladaHojaZ));					//hojas caídas (zona 1)
+		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(410.0f, 320.0f + trasladaHojaY, 550.0f + trasladaHojaZ));					//hojas caídas (zona 1)
+		model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(480.0f, 360.0f + trasladaHojaY, 630.0f + trasladaHojaZ));					//hojas caídas (zona 1)
+		model = glm::scale(model, glm::vec3(0.8f, 0.8f, 0.8f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-590.0f, 400.0f + trasladaHojaY, 440.0f + trasladaHojaZ));					//hojas caídas (zona 2)
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-310.0f, 300.0f + trasladaHojaY, 700.0f + trasladaHojaZ));					//hojas caídas (zona 2)
+		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-410.0f, 340.0f + trasladaHojaY, 550.0f + trasladaHojaZ));					//hojas caídas (zona 2)
+		model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-480.0f, 280.0f + trasladaHojaY, 630.0f + trasladaHojaZ));					//hojas caídas (zona 2)
+		model = glm::scale(model, glm::vec3(0.8f, 0.8f, 0.8f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(590.0f, 400.0f + trasladaHojaY, -440.0f + trasladaHojaZ));					//hojas caídas (zona 3)
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(310.0f, 340.0f + trasladaHojaY, -700.0f + trasladaHojaZ));					//hojas caídas (zona 3)
+		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(410.0f, 260.0f + trasladaHojaY, -550.0f + trasladaHojaZ));					//hojas caídas (zona 3)
+		model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(480.0f, 300.0f + trasladaHojaY, -630.0f + trasladaHojaZ));					//hojas caídas (zona 3)
+		model = glm::scale(model, glm::vec3(0.8f, 0.8f, 0.8f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-590.0f, 400.0f + trasladaHojaY, -440.0f + trasladaHojaZ));					//hojas caídas (zona 4)
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-310.0f, 330.0f + trasladaHojaY, -700.0f + trasladaHojaZ));					//hojas caídas (zona 4)
+		model = glm::scale(model, glm::vec3(0.6f, 0.6f, 0.6f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-410.0f, 250.0f + trasladaHojaY, -550.0f + trasladaHojaZ));					//hojas caídas (zona 4)
+		model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-480.0f, 290.0f + trasladaHojaY, -630.0f + trasladaHojaZ));					//hojas caídas (zona 4)
+		model = glm::scale(model, glm::vec3(0.8f, 0.8f, 0.8f));
+		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaHojaY), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		hojasCaidas.Draw(staticShader);
+
 
 		/********************************* ESTACIÃ“N BUS ********************************/
 
