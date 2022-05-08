@@ -547,6 +547,7 @@ int main()
 	Model tronco("resources/objects/Christian/Arbol/tronco.obj");
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
 	Model fuente("resources/objects/Christian/fuente/fuente.obj");
+	Model lampara("resources/objects/Christian/lampara/lampara.obj");
 
 	// Audio Configuration
 
@@ -979,7 +980,7 @@ int main()
 
 		/********************************* ESTACIÓN BUS ********************************/
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1350.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1500.0f));
 		model = glm::scale(model, glm::vec3(13.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
@@ -993,11 +994,84 @@ int main()
 		staticShader.setMat4("model", model);
 		Bus.Draw(staticShader);
 
-		/************************************** BUS *************************************/
+		/************************************** FUENTE *************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(3.5f));
 		staticShader.setMat4("model", model);
 		fuente.Draw(staticShader);
+
+		/************************************** LÁMPARAS *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1000.0f, 0.0f, -500.0f));			//lámpara alrededor (zona 1)
+		model = glm::scale(model, glm::vec3(3.5f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1000.0f, 0.0f, 500.0f));				//lámpara alrededor (zona 1)
+		model = glm::scale(model, glm::vec3(3.5f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1000.0f, 0.0f, -500.0f));				//lámpara alrededor (zona 2)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1000.0f, 0.0f, 800.0f));				//lámpara alrededor (zona 2)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1000.0f, 0.0f, -2100.0f));		//lámpara alrededor (zona 2)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(600.0f, 0.0f, 1300.0f));			//lámpara alrededor (zona 3)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+			
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-600.0f, 0.0f, 1300.0f));			//lámpara alrededor (zona 3)
+		model = glm::scale(model, glm::vec3(3.5f));	
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1250.0f, 0.0f, 2150.0f));			//lámpara alrededor (zona 3)
+		model = glm::scale(model, glm::vec3(3.5f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1250.0f, 0.0f, 2150.0f));		//lámpara alrededor (zona 3)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(600.0f, 0.0f, -1300.0f));			//lámpara alrededor (zona 4)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-600.0f, 0.0f, -1300.0f));		//lámpara alrededor (zona 4)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1250.0f, 0.0f, -2150.0f));		//lámpara alrededor (zona 5)
+		model = glm::scale(model, glm::vec3(3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		lampara.Draw(staticShader);
+
+
 
 		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(120.0f, 30.0f, 180.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
