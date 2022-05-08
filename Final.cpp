@@ -79,7 +79,11 @@ float	movAuto_x = 0.0f,
 		orientaHojaX = 0.0f,
 		orientaHojaY = 0.0f,
 		trasladaHojaY = 0.0f,
-		trasladaHojaZ = 0.0f;
+		trasladaHojaZ = 0.0f,
+		orientaPersonajeH_Y = 0.0f,
+		trasladaPersonajeH_X = 0.0f,
+		trasladaPersonajeH_Z = 0.0f;
+		
 bool	animacion = false,
 		recorrido1 = true,
 		recorrido2 = false,
@@ -101,7 +105,13 @@ bool	animacion = false,
 		estadoHoja7 = false,
 		estadoHoja8 = false,
 		estadoHoja9 = false,
-		estadoHoja10 = false;
+		estadoHoja10 = false,
+		estadoPersonajeM1 = true,
+		estadoPersonajeM2 = false,
+		estadoPersonajeM3 = false,
+		estadoPersonajeM4 = false,
+		estadoPersonajeM5 = false,
+		estadoPersonajeM6 = false;
 
 
 //Keyframes (Manipulación y dibujo)
@@ -450,6 +460,70 @@ void animate(void)
 				estadoHoja1 = true;
 			}
 		}
+
+
+
+		if (estadoPersonajeM1) {
+			trasladaPersonajeH_Z += 4.0f;
+			trasladaPersonajeH_X = 0.0f;
+			orientaPersonajeH_Y = 0.0f;
+			if (trasladaPersonajeH_Z >= 650.0f){
+				estadoPersonajeM1 = false;
+				estadoPersonajeM2 = true;
+				trasladaPersonajeH_Z = 650.0f;
+			}
+		}
+		if (estadoPersonajeM2) {
+			trasladaPersonajeH_Z += 0.0f;
+			trasladaPersonajeH_X += 4.0f;
+			orientaPersonajeH_Y = 90.0f;
+			if (trasladaPersonajeH_X >= 650.0f){
+				estadoPersonajeM2 = false;
+				estadoPersonajeM3 = true;
+				trasladaPersonajeH_X = 650.0f;
+			}
+		}
+		if (estadoPersonajeM3) {
+			trasladaPersonajeH_Z -= 3.0f;
+			trasladaPersonajeH_X += 3.0f;
+			orientaPersonajeH_Y = 135.0f;
+			if (trasladaPersonajeH_X >= 950.0f) {
+				estadoPersonajeM3 = false;
+				estadoPersonajeM4 = true;
+				trasladaPersonajeH_X = 950.0f;
+			}
+		}
+		if (estadoPersonajeM4) {
+			trasladaPersonajeH_Z -= 4.0f;
+			trasladaPersonajeH_X += 0.0f;
+			orientaPersonajeH_Y = 180.0f;
+			if (trasladaPersonajeH_Z <= -600.0f) {
+				estadoPersonajeM4 = false;
+				estadoPersonajeM5 = true;
+				trasladaPersonajeH_Z = -600.0f;
+			}
+		}
+		if (estadoPersonajeM5) {
+			trasladaPersonajeH_Z += 0.0f;
+			trasladaPersonajeH_X -= 4.0f;
+			orientaPersonajeH_Y = 270.0f;
+			if (trasladaPersonajeH_X <= 400.0f) {
+				estadoPersonajeM5 = false;
+				estadoPersonajeM6 = true;
+				trasladaPersonajeH_X = 400.0f;
+			}
+		}
+		if (estadoPersonajeM6) {
+			trasladaPersonajeH_Z += 3.0f;
+			trasladaPersonajeH_X -= 3.0f;
+			orientaPersonajeH_Y = 315.0f;
+			if (trasladaPersonajeH_X <= 0.0f) {
+				estadoPersonajeM6 = false;
+				estadoPersonajeM1 = true;
+				trasladaPersonajeH_X = 0.0f;
+			}
+		}
+
 	}
 }
 
@@ -548,6 +622,10 @@ int main()
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
 	Model fuente("resources/objects/Christian/fuente/fuente.obj");
 	Model lampara("resources/objects/Christian/lampara/lampara.obj");
+	ModelAnim personajeM("resources/objects/Christian/personajeM/personajeM.dae");
+	personajeM.initShaders(animShader.ID);
+	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
+	personajeH.initShaders(animShader.ID);
 
 	// Audio Configuration
 
@@ -633,6 +711,32 @@ int main()
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Character animation
 		// -------------------------------------------------------------------------------------------------------------------------
+
+		//Remember to activate the shader with the animation
+		animShader.use();
+		animShader.setMat4("projection", projection);
+		animShader.setMat4("view", view);
+	
+		animShader.setVec3("material.specular", glm::vec3(0.5f));
+		animShader.setFloat("material.shininess", 32.0f);
+		animShader.setVec3("light.ambient", ambientColor);
+		animShader.setVec3("light.diffuse", diffuseColor);
+		animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+		animShader.setVec3("light.direction", lightDirection);
+		animShader.setVec3("viewPos", camera.Position);
+
+		/********************************* PERSONAJE M ********************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f + trasladaPersonajeH_X, 4.0f, 600.0f + trasladaPersonajeH_Z));
+		model = glm::rotate(model, glm::radians(orientaPersonajeH_Y), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.2f));
+		animShader.setMat4("model", model);
+		personajeM.Draw(animShader);
+
+		/********************************* PERSONAJE H ********************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 30.0f, -1610.0f));
+		model = glm::scale(model, glm::vec3(0.55f));
+		animShader.setMat4("model", model);
+		personajeH.Draw(animShader);
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -980,7 +1084,7 @@ int main()
 
 		/********************************* ESTACIÓN BUS ********************************/
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1500.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1600.0f));
 		model = glm::scale(model, glm::vec3(13.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
