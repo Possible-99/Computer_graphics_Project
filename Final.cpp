@@ -546,6 +546,7 @@ int main()
 	Model hojasArbol("resources/objects/Christian/Arbol/hojasArbol.obj");
 	Model tronco("resources/objects/Christian/Arbol/tronco.obj");
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
+	Model fuente("resources/objects/Christian/fuente/fuente.obj");
 
 	// Audio Configuration
 
@@ -986,11 +987,17 @@ int main()
 
 		/************************************** BUS *************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f+movAuto_x, -30.0f, -1060.0f+ movAuto_z));
-		model = glm::scale(model, glm::vec3(15.0f));
+		model = glm::scale(model, glm::vec3(20.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Bus.Draw(staticShader);
+
+		/************************************** BUS *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(3.5f));
+		staticShader.setMat4("model", model);
+		fuente.Draw(staticShader);
 
 		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(120.0f, 30.0f, 180.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
