@@ -537,7 +537,7 @@ int main()
 	// load models
 	// ----------------------------------------------------------
 
-	Model piso("resources/objects/Christian/Parque/pisoFraccionamiento.obj");
+	Model piso("resources/objects/Christian/pisoFraccionamiento/pisoFraccionamiento.obj");
 	Model EstacionBus("resources/objects/Christian/EstacionBus/EstacionBus.obj");
 	Model Bus("resources/objects/Christian/Bus/Bus.obj");
 	Model Arbol("resources/objects/Christian/Arbol/Arbol.obj");
