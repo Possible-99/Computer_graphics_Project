@@ -1,9 +1,4 @@
-﻿/*---------------------------------------------------------*/
-/* ----------------  PrÃ¡ctica                   -----------*/
-/*-----------------    2022-2   ---------------------------*/
-/*------------- Alumno:                     ---------------*/
-/*------------- No. Cuenta                  ---------------*/
-#include <Windows.h>
+﻿#include <Windows.h>
 
 #include <glad/glad.h>
 #include <glfw3.h>	//main
@@ -627,6 +622,13 @@ int main()
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
 	personajeH.initShaders(animShader.ID);
 
+	//Gallery
+	Model gallery("resources/objects/Elizabeth/galeria/galeria.obj");
+
+	//House
+	Model house("resources/objects/Elizabeth/casa4x4/casa4x4.obj");
+
+
 	// Audio Configuration
 
 	if (!Background)
@@ -752,7 +754,7 @@ int main()
 		model = glm::scale(model, glm::vec3(15.0f));
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
-
+		
 		/****************************** ÁRBOLES PARQUE *****************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 30.0f, 315.0f));				//árbol animado (zona 1)
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
@@ -936,7 +938,6 @@ int main()
 		tronco.Draw(staticShader);
 
 		/********************************* HOJAS CAIDAS PARQUE ********************************/
-
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(590.0f, 400.0f + trasladaHojaY, 440.0f + trasladaHojaZ));					//hojas caídas (zona 1)
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 		model = glm::rotate(model, glm::radians(orientaHojaX), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -1049,7 +1050,6 @@ int main()
 		staticShader.setMat4("model", model);
 		hojasCaidas.Draw(staticShader);
 
-
 		/****************************** ÁRBOLES ALREDEDOR *****************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(1300.0f, 0.0f, 1000.0f)); 		//árbol alrededor (zona 1)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
@@ -1083,7 +1083,6 @@ int main()
 
 
 		/********************************* ESTACIÓN BUS ********************************/
-
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1600.0f));
 		model = glm::scale(model, glm::vec3(13.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1175,6 +1174,38 @@ int main()
 		staticShader.setMat4("model", model);
 		lampara.Draw(staticShader);
 
+
+		/************************************** Gallery *************************************/
+		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -590.0f));
+		model = glm::scale(model, glm::vec3(1.7f));
+		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		gallery.Draw(staticShader);
+
+		
+		
+		/************************************** Houses *************************************/
+
+		//House 1
+		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 520.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
+		staticShader.setMat4("model", model);
+		house.Draw(staticShader);
+
+		//House 2
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house.Draw(staticShader);
+
+		//House 3
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house.Draw(staticShader);
+
+		//House 4
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		house.Draw(staticShader);
 
 
 		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(120.0f, 30.0f, 180.0f));
