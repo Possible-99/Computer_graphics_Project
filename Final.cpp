@@ -617,6 +617,7 @@ int main()
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
 	Model fuente("resources/objects/Christian/fuente/fuente.obj");
 	Model lampara("resources/objects/Christian/lampara/lampara.obj");
+	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
 	ModelAnim personajeM("resources/objects/Christian/personajeM/personajeM.dae");
 	personajeM.initShaders(animShader.ID);
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
@@ -1103,6 +1104,17 @@ int main()
 		staticShader.setMat4("model", model);
 		fuente.Draw(staticShader);
 
+		
+		/************************************  Edificio *************************************/
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(850.0f, 0.0f, 2500.0f));
+		model = glm::scale(model, glm::vec3(8.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		Edificio.Draw(staticShader);
+		glEnable(GL_BLEND);
+		
 		/************************************** LÁMPARAS *************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1000.0f, 0.0f, -500.0f));			//lámpara alrededor (zona 1)
 		model = glm::scale(model, glm::vec3(3.5f));
