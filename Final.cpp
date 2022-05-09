@@ -1176,36 +1176,51 @@ int main()
 
 
 		/************************************** Gallery *************************************/
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -590.0f));
 		model = glm::scale(model, glm::vec3(1.7f));
 		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		gallery.Draw(staticShader);
+		glEnable(GL_BLEND);
 
 		
 		
 		/************************************** Houses *************************************/
 
 		//House 1
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 520.0f));
 		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
+		glEnable(GL_BLEND);
 
 		//House 2
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
+		glEnable(GL_BLEND);
 
 		//House 3
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
+		glEnable(GL_BLEND);
 
 		//House 4
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
+		glEnable(GL_BLEND);
 
 
 		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(120.0f, 30.0f, 180.0f));
