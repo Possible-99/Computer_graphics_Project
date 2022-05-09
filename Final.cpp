@@ -618,6 +618,7 @@ int main()
 	Model fuente("resources/objects/Christian/fuente/fuente.obj");
 	Model lampara("resources/objects/Christian/lampara/lampara.obj");
 	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
+	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
 	ModelAnim personajeM("resources/objects/Christian/personajeM/personajeM.dae");
 	personajeM.initShaders(animShader.ID);
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
@@ -1114,6 +1115,14 @@ int main()
 		staticShader.setMat4("model", model);
 		Edificio.Draw(staticShader);
 		glEnable(GL_BLEND);
+		
+		/************************************  Kiosko *************************************/
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(100.0f, 0.0f, 1800.0f));
+		model = glm::scale(model, glm::vec3(6.0f));
+		model = glm::rotate(model, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		Kiosko.Draw(staticShader);
 		
 		/************************************** LÁMPARAS *************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1000.0f, 0.0f, -500.0f));			//lámpara alrededor (zona 1)
