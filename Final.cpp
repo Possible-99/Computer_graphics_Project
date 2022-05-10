@@ -47,7 +47,7 @@ void getResolution(void);
 
 
 // camera
-Camera camera(glm::vec3(0.0f, 50.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 500.0f, 800.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -62,6 +62,14 @@ double	deltaTime = 0.0f,
 //Lighting
 glm::vec3 lightPosition(0.0f, 4.0f, -10.0f);
 glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
+
+//Count 
+float countAux = 0.0f,
+      variableX = 0.03f,
+      variableY = 0.03f,
+      variableZ = 0.03f;
+
+boolean anochecer = true;
 
 // posiciones
 //float x = 0.0f;
@@ -178,6 +186,28 @@ void interpolation(void)
 
 void animate(void)
 {
+	if (anochecer)
+	{
+		variableX += 0.001f;
+		variableY += 0.001f;
+		variableZ += 0.001f;
+		if (variableX >= 1.0f || variableY >= 1.0f || variableZ >= 1.0f) {
+			anochecer = false;
+		}
+	}
+
+	if (!anochecer) {
+		
+		variableX -= 0.001f;
+		variableY -= 0.001f;
+		variableZ -= 0.001f;
+		if (variableX <= 0.03f || variableY <= 0.03f || variableZ <= 0.03f) {
+			anochecer = true;
+		}
+	}
+
+	countAux += 0.01f;
+
 	if (play)
 	{
 		if (i_curr_steps >= i_max_steps) //end of animation between frames?
@@ -675,19 +705,21 @@ int main()
 		//Setup Advanced Lights
 		staticShader.setVec3("viewPos", camera.Position);
 		staticShader.setVec3("dirLight.direction", lightDirection);
-		staticShader.setVec3("dirLight.ambient", glm::vec3(1.0f, 1.0f, 1.0f));
-		staticShader.setVec3("dirLight.diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
-		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("dirLight.ambient", glm::vec3(variableX, variableY, variableZ));
+		//staticShader.setVec3("dirLight.ambient", glm::vec3(0.2f,0.3f,0.3f));
+		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(0.0f,0.0f,0.0f));
+		staticShader.setVec3("dirLight.specular", glm::vec3(0.2f, 0.1f, 0.1f));
 
-		staticShader.setVec3("pointLight[0].position", lightPosition);
-		staticShader.setVec3("pointLight[0].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[0].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		//staticShader.setVec3("pointLight[0].position", glm::vec3(50.0f, 50.0f, 40.0f));
+		staticShader.setVec3("pointLight[0].position", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[0].ambient", glm::vec3(0.2f, 0.2f, 0.2f));
+		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(0.8f, 0.8f, 0.8f)); 
+		staticShader.setVec3("pointLight[0].specular", glm::vec3(0.1f, 0.1f, 0.1f));
 		staticShader.setFloat("pointLight[0].constant", 0.08f);
 		staticShader.setFloat("pointLight[0].linear", 0.009f);
 		staticShader.setFloat("pointLight[0].quadratic", 0.032f);
 
-		staticShader.setVec3("pointLight[1].position", glm::vec3(-80.0, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[1].position", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[1].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[1].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[1].specular", glm::vec3(0.0f, 0.0f, 0.0f));
@@ -1051,32 +1083,32 @@ int main()
 		hojasCaidas.Draw(staticShader);
 
 		/****************************** ÁRBOLES ALREDEDOR *****************************/
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1300.0f, 0.0f, 1000.0f)); 		//árbol alrededor (zona 1)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1350.0f, 0.0f, 1050.0f)); 		//árbol alrededor (zona 1)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1600.0f, 0.0f, 1600.0f));			//árbol alrededor (zona 1)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1650.0f, 0.0f, 1650.0f));			//árbol alrededor (zona 1)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1300.0f, 0.0f, 1000.0f)); 		//árbol alrededor (zona 2)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1350.0f, 0.0f, 1050.0f)); 		//árbol alrededor (zona 2)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1600.0f, 0.0f, 1600.0f));			//árbol alrededor (zona 2)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1650.0f, 0.0f, 1650.0f));			//árbol alrededor (zona 2)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1300.0f, 0.0f, -1000.0f)); 		//árbol alrededor (zona 3)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1350.0f, 0.0f, -1050.0f)); 		//árbol alrededor (zona 3)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1600.0f, 0.0f, -1600.0f));			//árbol alrededor (zona 3)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1650.0f, 0.0f, -1650.0f));			//árbol alrededor (zona 3)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
@@ -1179,7 +1211,7 @@ int main()
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -590.0f));
-		model = glm::scale(model, glm::vec3(1.7f));
+		model = glm::scale(model, glm::vec3(1.9f));
 		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		gallery.Draw(staticShader);
@@ -1192,8 +1224,8 @@ int main()
 		//House 1
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 520.0f));
-		model = glm::scale(model, glm::vec3(2.0f));
+		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 490.0f));
+		model = glm::scale(model, glm::vec3(2.5f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 		glEnable(GL_BLEND);
@@ -1201,7 +1233,7 @@ int main()
 		//House 2
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(50.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 		glEnable(GL_BLEND);
@@ -1209,7 +1241,7 @@ int main()
 		//House 3
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(50.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 		glEnable(GL_BLEND);
@@ -1217,7 +1249,7 @@ int main()
 		//House 4
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(45.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 		glEnable(GL_BLEND);
