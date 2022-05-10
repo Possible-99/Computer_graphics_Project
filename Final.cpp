@@ -1213,8 +1213,8 @@ int main()
 		
 		/************************************  Kiosko *************************************/
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(100.0f, 0.0f, 1800.0f));
-		model = glm::scale(model, glm::vec3(6.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, 1900.0f));
+		model = glm::scale(model, glm::vec3(9.0f));
 		model = glm::rotate(model, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Kiosko.Draw(staticShader);
