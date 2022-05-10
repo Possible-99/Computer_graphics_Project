@@ -77,7 +77,12 @@ float	movAuto_x = 0.0f,
 		trasladaHojaZ = 0.0f,
 		orientaPersonajeH_Y = 0.0f,
 		trasladaPersonajeH_X = 0.0f,
-		trasladaPersonajeH_Z = 0.0f;
+		trasladaPersonajeH_Z = 0.0f,
+		patoOrientacion = 0.0f,
+		patoIncremento = 0.0f;
+
+//Pato posicion
+glm::vec3 patoPos(0.0f, 0.0f, 0.0f);
 		
 bool	animacion = false,
 		recorrido1 = true,
@@ -520,6 +525,13 @@ void animate(void)
 		}
 
 	}
+
+	//Animación Pato
+	patoIncremento -= 0.0085f;
+	patoPos.x = 130.0f * cos(patoIncremento);
+	patoPos.z = 130.0f * sin(patoIncremento);
+	patoOrientacion += 0.49f;
+
 }
 
 void getResolution()
@@ -619,6 +631,7 @@ int main()
 	Model lampara("resources/objects/Christian/lampara/lampara.obj");
 	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
 	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
+	Model pato("resources/objects/Pablo/pato/pato.obj");
 	ModelAnim personajeM("resources/objects/Christian/personajeM/personajeM.dae");
 	personajeM.initShaders(animShader.ID);
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
@@ -1105,6 +1118,12 @@ int main()
 		staticShader.setMat4("model", model);
 		fuente.Draw(staticShader);
 
+		/*************************************** PATO **************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(patoPos.x, 30.0f + patoPos.y, patoPos.z));
+		model = glm::rotate(model, glm::radians(270.0f + patoOrientacion), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		staticShader.setMat4("model", model);
+		pato.Draw(staticShader);
 		
 		/************************************  Edificio *************************************/
 		glEnable(GL_BLEND);
