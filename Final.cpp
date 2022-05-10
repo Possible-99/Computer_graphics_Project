@@ -66,21 +66,26 @@ glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 // posiciones
 //float x = 0.0f;
 //float y = 0.0f;
-float	movAuto_x = 0.0f,
+float	movAuto_x = 0.0f,	// para la animación del autobús
 		movAuto_z = 0.0f,
 		orienta = 0.0f,
-		orientaArbolX = 0.0f,
+		orientaArbolX = 0.0f,	// para la animación del árbol
 		orientaArbolY = 0.0f,
-		orientaHojaX = 0.0f,
+		orientaArbolZ = 0.0f,
+		orientaHojaX = 0.0f,	// para la animación de las hojas caídas
 		orientaHojaY = 0.0f,
 		trasladaHojaY = 0.0f,
 		trasladaHojaZ = 0.0f,
-		orientaPersonajeH_Y = 0.0f,
+		orientaPersonajeH_Y = 0.0f,	// para la animación del personaje M
 		trasladaPersonajeH_X = 0.0f,
-		trasladaPersonajeH_Z = 0.0f;
+		trasladaPersonajeH_Z = 0.0f,
+		trasladaAguilaX = 0.0f,		// para la animación del águila
+		trasladaAguilaZ = 0.0f,
+		orientaAlasAguilaY = 0.0f,
+		orientaAlasAguilaX = 0.0f;
 		
 bool	animacion = false,
-		recorrido1 = true,
+		recorrido1 = true,	// para la animación del autobús
 		recorrido2 = false,
 		recorrido3 = false,
 		recorrido4 = false,
@@ -89,9 +94,13 @@ bool	animacion = false,
 		recorrido7 = false,
 		recorrido8 = false,
 		recorrido9 = false,
-		estadoArbol1 = true,
+		estadoArbol1 = true, // para la animación del árbol
 		estadoArbol2 = false,
-		estadoHoja1 = false,
+		estadoArbol3 = false,
+		estadoArbol4 = false,
+		estadoArbol5 = false,
+		estadoArbol6 = false,
+		estadoHoja1 = false, // para la animación de las hojas caídas
 		estadoHoja2 = true,
 		estadoHoja3 = false,
 		estadoHoja4 = false,
@@ -101,12 +110,18 @@ bool	animacion = false,
 		estadoHoja8 = false,
 		estadoHoja9 = false,
 		estadoHoja10 = false,
-		estadoPersonajeM1 = true,
+		estadoPersonajeM1 = true, // para la animación del personaje M
 		estadoPersonajeM2 = false,
 		estadoPersonajeM3 = false,
 		estadoPersonajeM4 = false,
 		estadoPersonajeM5 = false,
-		estadoPersonajeM6 = false;
+		estadoPersonajeM6 = false,
+		estadoAguila1 = true,		// para la animación del águila
+		estadoAguila2 = false,
+		estadoAguila3 = true,
+		estadoAguila4 = false,
+		estadoAguila5 = false,
+		estadoAguila6 = false;
 
 
 //Keyframes (Manipulación y dibujo)
@@ -214,6 +229,9 @@ void animate(void)
 	//VehÃ­culo
 	if (animacion)
 	{
+
+		//********************************* ANIMACIÓN DEL AUTOBÚS *************************************
+
 		if (recorrido1) {
 			movAuto_x -= 10.0f;
 			if (movAuto_x <= -500.0f) {
@@ -299,54 +317,58 @@ void animate(void)
 			}
 		}
 
+		//******************************************ANIMACIÓN DEL ÁRBOL *******************************
 
 		if (estadoArbol1){
-			orientaArbolX += 0.04f;
-			orientaArbolY += 0.04f;
-			if(orientaArbolX >= 2.0f){
+			orientaArbolX += 0.08f;
+			orientaArbolY += 0.08f;
+			if(orientaArbolX >= 3.0f){
 				estadoArbol1 = false;
 				estadoArbol2 = true;
 			}
 		} 
 		if (estadoArbol2){
-			orientaArbolX -= 0.04f;
-			orientaArbolY -= 0.04f;
+			orientaArbolX -= 0.08f;
+			orientaArbolY -= 0.08f;
 			if(orientaArbolX <= 0.0f){
-				estadoArbol1 = true;
 				estadoArbol2 = false;
+				estadoArbol3 = true;
+			}
+		}
+		if (estadoArbol3){
+			orientaArbolZ += 0.08f;
+			orientaArbolY += 0.08f;
+			if(orientaArbolZ >= 3.0f){
+				estadoArbol3 = false;
+				estadoArbol4 = true;
+			}
+		}
+		if (estadoArbol4){
+			orientaArbolZ -= 0.08f;
+			orientaArbolY -= 0.08f;
+			if(orientaArbolZ <= 0.0f){
+				estadoArbol4 = false;
+				estadoArbol5 = true;
+			}
+		}
+		if (estadoArbol5){
+			orientaArbolX += 0.12f;
+			orientaArbolY += 0.12f;
+			if(orientaArbolX >= 4.0f){
+				estadoArbol5 = false;
+				estadoArbol6 = true;
+			}
+		} 
+		if (estadoArbol6){
+			orientaArbolX -= 0.07f;
+			orientaArbolY -= 0.07f;
+			if(orientaArbolX <= 0.0f){
+				estadoArbol6 = false;
+				estadoArbol1 = true;
 			}
 		}
 
-		/*
-		if (estadoHoja1){
-			trasladaHojaY = 0.0f;
-			estadoHoja1 = false;
-		}
-		if (estadoHoja2){
-			orientaHojaX += 1.0f;
-			orientaHojaY += 1.0f;
-			trasladaHojaY -= 0.2f;
-			if(orientaHojaX >= 9.0f){
-				estadoHoja2 = false;
-				estadoHoja3 = true;
-			}
-			if (trasladaHojaY <= -150.0f){
-				estadoHoja1 = true;
-			}
-		} 
-		if (estadoHoja3){
-			orientaHojaX -= 1.0f;
-			orientaHojaY -= 1.0f;
-			trasladaHojaY -= 0.2f;
-			if(orientaHojaX <= 0.0f){
-				estadoHoja2 = true;
-				estadoHoja3 = false;
-			}
-			if (trasladaHojaY <= -150.0f){
-				estadoHoja1 = true;
-			}
-		}
-		*/
+		// ******************************** ANIMACIÓN DE LAS HOJAS CAÍDAS ******************************
 		if (estadoHoja1) {
 			orientaHojaX = 0.0f;
 			orientaHojaY = 0.0f;
@@ -457,9 +479,9 @@ void animate(void)
 		}
 
 
-
+		// ********************************* ANIMACIÓN DEL PERDONAJE M ********************************
 		if (estadoPersonajeM1) {
-			trasladaPersonajeH_Z += 4.0f;
+			trasladaPersonajeH_Z += 6.0f;
 			trasladaPersonajeH_X = 0.0f;
 			orientaPersonajeH_Y = 0.0f;
 			if (trasladaPersonajeH_Z >= 650.0f){
@@ -470,7 +492,7 @@ void animate(void)
 		}
 		if (estadoPersonajeM2) {
 			trasladaPersonajeH_Z += 0.0f;
-			trasladaPersonajeH_X += 4.0f;
+			trasladaPersonajeH_X += 6.0f;
 			orientaPersonajeH_Y = 90.0f;
 			if (trasladaPersonajeH_X >= 650.0f){
 				estadoPersonajeM2 = false;
@@ -479,8 +501,8 @@ void animate(void)
 			}
 		}
 		if (estadoPersonajeM3) {
-			trasladaPersonajeH_Z -= 3.0f;
-			trasladaPersonajeH_X += 3.0f;
+			trasladaPersonajeH_Z -= 4.0f;
+			trasladaPersonajeH_X += 4.0f;
 			orientaPersonajeH_Y = 135.0f;
 			if (trasladaPersonajeH_X >= 950.0f) {
 				estadoPersonajeM3 = false;
@@ -489,7 +511,7 @@ void animate(void)
 			}
 		}
 		if (estadoPersonajeM4) {
-			trasladaPersonajeH_Z -= 4.0f;
+			trasladaPersonajeH_Z -= 6.0f;
 			trasladaPersonajeH_X += 0.0f;
 			orientaPersonajeH_Y = 180.0f;
 			if (trasladaPersonajeH_Z <= -600.0f) {
@@ -500,7 +522,7 @@ void animate(void)
 		}
 		if (estadoPersonajeM5) {
 			trasladaPersonajeH_Z += 0.0f;
-			trasladaPersonajeH_X -= 4.0f;
+			trasladaPersonajeH_X -= 6.0f;
 			orientaPersonajeH_Y = 270.0f;
 			if (trasladaPersonajeH_X <= 400.0f) {
 				estadoPersonajeM5 = false;
@@ -509,8 +531,8 @@ void animate(void)
 			}
 		}
 		if (estadoPersonajeM6) {
-			trasladaPersonajeH_Z += 3.0f;
-			trasladaPersonajeH_X -= 3.0f;
+			trasladaPersonajeH_Z += 4.0f;
+			trasladaPersonajeH_X -= 4.0f;
 			orientaPersonajeH_Y = 315.0f;
 			if (trasladaPersonajeH_X <= 0.0f) {
 				estadoPersonajeM6 = false;
@@ -519,6 +541,60 @@ void animate(void)
 			}
 		}
 
+		//********************************** ANIMACIÓN DEL ÁGUILA **********************************
+		if(estadoAguila1){
+			orientaAlasAguilaY += 5.0f;
+			if(orientaAlasAguilaY >= 30.0f){
+				estadoAguila1 = false;
+				estadoAguila2 = true;
+			}
+		}
+		if(estadoAguila2){
+			orientaAlasAguilaY -= 5.0f;
+			if(orientaAlasAguilaY <= 0.0f){
+				estadoAguila2 = false;
+				estadoAguila1 = true;
+			}
+		}
+		if(estadoAguila3){
+			trasladaAguilaX += 10.0f;
+			trasladaAguilaZ += 10.0f;
+			orientaAlasAguilaX = 0.0f;
+			if(trasladaAguilaX >= 1500.0f){
+				estadoAguila3 = false;
+				estadoAguila4 = true;
+			}
+		}
+		if(estadoAguila4){
+			trasladaAguilaX += 0.0f;
+			trasladaAguilaZ += 10.0f;
+			orientaAlasAguilaX = 45.0f;
+			if(trasladaAguilaZ >= 3000.0f){
+				estadoAguila4 = false;
+				estadoAguila5 = true;
+			}
+		}
+		if(estadoAguila5){
+			trasladaAguilaX += 10.0f;
+			trasladaAguilaZ += 10.0f;
+			orientaAlasAguilaX = 0.0f;
+			if(trasladaAguilaZ >= 4500.0f){
+				estadoAguila5 = false;
+				estadoAguila6 = true;
+			}
+		}
+		if(estadoAguila6){
+			trasladaAguilaX += 10.0f;
+			trasladaAguilaZ += 0.0f;
+			orientaAlasAguilaX = -45.0f;
+			if(trasladaAguilaX >= 4000.0f){
+				estadoAguila6 = false;
+				estadoAguila3 = true;
+				trasladaAguilaX = 0.0f;
+				trasladaAguilaZ = 0.0f;
+				orientaAlasAguilaX = 0.0f;
+			}
+		}
 	}
 }
 
@@ -617,16 +693,19 @@ int main()
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
 	Model fuente("resources/objects/Christian/fuente/fuente.obj");
 	Model lampara("resources/objects/Christian/lampara/lampara.obj");
-	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
-	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
+	Model cuerpo("resources/objects/Christian/eagle/cuerpo.obj");
+	Model alaIzquierda("resources/objects/Christian/eagle/alaIzquierda.obj");
+	Model alaDerecha("resources/objects/Christian/eagle/alaDerecha.obj");
 	ModelAnim personajeM("resources/objects/Christian/personajeM/personajeM.dae");
 	personajeM.initShaders(animShader.ID);
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
 	personajeH.initShaders(animShader.ID);
 
+	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
+	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
+
 	//Gallery
 	Model gallery("resources/objects/Elizabeth/galeria/galeria.obj");
-
 	//House
 	Model house("resources/objects/Elizabeth/casa4x4/casa4x4.obj");
 
@@ -762,6 +841,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 0.0f, 315.0f));
@@ -773,6 +853,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 0.0f, 860.0f));
@@ -784,6 +865,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(330.0f, 0.0f, 540.5f));
@@ -795,6 +877,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 0.0f, 610.5f));
@@ -806,6 +889,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 0.0f, 315.0f));
@@ -817,6 +901,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 0.0f, 860.0f));
@@ -828,6 +913,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, 540.5f));
@@ -839,6 +925,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 0.0f, 610.5f));
@@ -850,6 +937,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 0.0f, -330.0f));
@@ -861,6 +949,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(260.0f, 0.0f, -860.0f));
@@ -872,6 +961,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 0.0f, -550.5f));
@@ -883,6 +973,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(550.0f, 0.0f, -610.5f));
@@ -894,6 +985,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-650.0f, 0.0f, -330.0f));
@@ -905,6 +997,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-260.0f, 0.0f, -860.0f));
@@ -921,6 +1014,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-300.0f, 0.0f, -550.5f));
@@ -932,6 +1026,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolX), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(orientaArbolY), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaArbolZ), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		hojasArbol.Draw(staticShader);
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-550.0f, 0.0f, -610.5f));
@@ -1195,7 +1290,6 @@ int main()
 		staticShader.setMat4("model", model);
 		lampara.Draw(staticShader);
 
-
 		/************************************** Gallery *************************************/
 		model = glm::translate(model, glm::vec3(50.0f, 0.0f, -590.0f));
 		model = glm::scale(model, glm::vec3(1.7f));
@@ -1228,6 +1322,31 @@ int main()
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
+		/************************************** Águila *************************************/
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-2000.0f + trasladaAguilaX, 1000.0f, -2500.0f + trasladaAguilaZ));
+		model = glm::scale(model, glm::vec3(1.2f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaAlasAguilaX), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		staticShader.setMat4("model", model);
+		cuerpo.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-2000.0f + trasladaAguilaX, 1000.0f, -2500.0f + trasladaAguilaZ));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaAlasAguilaX), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaAlasAguilaY), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		alaIzquierda.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-2000.0f + trasladaAguilaX, 1000.0f, -2500.0f + trasladaAguilaZ));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(orientaAlasAguilaX), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(orientaAlasAguilaY), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		alaDerecha.Draw(staticShader);
 
 		/*model = glm::translate(glm::mat4(1.0f), glm::vec3(120.0f, 30.0f, 180.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
