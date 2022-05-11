@@ -1554,7 +1554,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		giroMonito--;
 	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
 		giroMonito++;
-	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
 		lightPosition.x++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		lightPosition.x--;
@@ -1571,6 +1571,11 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//eagle animation
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
 		animacion5 ^= true;
+
+	//Toggle Walking Man Animation
+
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
+		turnOnWalkMan ^= true;
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
