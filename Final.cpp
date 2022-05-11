@@ -132,6 +132,14 @@ bool	animacion1 = false,
 		estadoAguila5 = false,
 		estadoAguila6 = false;
 
+int		walkManState= 0;
+
+float	walkManAngle = 270.0f,
+		movWalkManX = 1150.0f,
+		movWalkManZ = 500.0f,
+		incremFactor = 6.0f;
+
+bool turnOnWalkMan = true;
 
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
@@ -607,6 +615,88 @@ void animate(void)
 		}
 	}
 
+	//********************************** Walking Man **********************************
+	if(turnOnWalkMan){
+
+		if (walkManState == 0) {
+			movWalkManX -= incremFactor;
+			walkManAngle = 270.0f;
+			if (movWalkManX <= 1100) walkManState = 1;
+		}
+
+		if (walkManState == 1) {
+			movWalkManZ -= incremFactor;
+			walkManAngle = 180.0f;
+			if (movWalkManZ <= -1500) walkManState = 2;
+		}
+
+		if (walkManState == 2) {
+			movWalkManX -= incremFactor;
+			walkManAngle = 270.0f;
+			if (movWalkManX <= -1100) walkManState = 3;
+		}
+
+		if (walkManState == 3) {
+			movWalkManZ += incremFactor;
+			walkManAngle = 0.0f;
+			if (movWalkManZ >= -400) walkManState = 4;
+		}
+
+		if (walkManState == 4) {
+			movWalkManX += incremFactor;
+			walkManAngle = 90.0f;
+			if (movWalkManX >= -950) walkManState = 5;
+		}
+
+		if (walkManState == 5) {
+			movWalkManZ += incremFactor;
+			walkManAngle = 0.0f;
+			if (movWalkManZ >= -150) walkManState = 6;
+		}
+
+		if (walkManState == 6) {
+			movWalkManX -= incremFactor;
+			walkManAngle = 270.0f;
+			if (movWalkManX <= -1050) walkManState = 7;
+		}
+
+		if (walkManState == 7) {
+			movWalkManZ += incremFactor;
+			walkManAngle = 0.0f;
+			if (movWalkManZ >= 0) walkManState = 8;
+		}
+
+		if (walkManState == 8) {
+			movWalkManZ -= incremFactor;
+			walkManAngle = 180.0f;
+			if (movWalkManZ <= -150) walkManState = 9;
+		}
+
+		if (walkManState == 9) {
+			movWalkManX += incremFactor;
+			walkManAngle = 90.0f;
+			if (movWalkManX >= -300) walkManState = 10;
+		}
+
+		if (walkManState == 10) {
+			movWalkManZ -= incremFactor;
+			walkManAngle = 180.0f;
+			if (movWalkManZ <= -320) walkManState = 11;
+		}
+
+		if (walkManState == 11) {
+			movWalkManX += incremFactor;
+			walkManAngle = 90.0f;
+			if (movWalkManX >= 345) walkManState = 12;
+		}
+		if (walkManState == 12) {
+			movWalkManZ += 0.98170732f * 6.0f;
+			movWalkManX += 0.98170732f * 6.0f;
+			walkManAngle = 45.53f;
+			if (movWalkManX >= 1150 && movWalkManZ >= 500) walkManState = 0; 
+		}
+	}
+
 	//Animación Pato
 	patoIncremento -= 0.0085f;
 	patoPos.x = 130.0f * cos(patoIncremento);
@@ -725,6 +815,10 @@ int main()
 	//House
 	Model house("resources/objects/Elizabeth/casa4x4/casa4x4.obj");
 
+	//Walking man
+	ModelAnim walkingMan("resources/objects/Juan/walking_man/Walking.dae");
+	walkingMan.initShaders(animShader.ID);
+
 
 	// Audio Configuration
 
@@ -836,6 +930,13 @@ int main()
 		model = glm::scale(model, glm::vec3(0.55f));
 		animShader.setMat4("model", model);
 		personajeH.Draw(animShader);
+
+		/********************************* Walking Man ********************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(movWalkManX, 0.0f, movWalkManZ));
+		model = glm::rotate(model, glm::radians(walkManAngle), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		animShader.setMat4("model", model);
+		walkingMan.Draw(animShader);
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -1453,7 +1554,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		giroMonito--;
 	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
 		giroMonito++;
-	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
 		lightPosition.x++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		lightPosition.x--;
@@ -1470,6 +1571,11 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//eagle animation
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
 		animacion5 ^= true;
+
+	//Toggle Walking Man Animation
+
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
+		turnOnWalkMan ^= true;
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
