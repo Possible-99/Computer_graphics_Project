@@ -139,7 +139,7 @@ float	walkManAngle = 270.0f,
 		movWalkManZ = 500.0f,
 		incremFactor = 6.0f;
 
-bool turnOnWalkMan = false;
+bool turnOnWalkMan = true;
 
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
