@@ -82,7 +82,12 @@ float	movAuto_x = 0.0f,	// para la animación del autobús
 		trasladaAguilaX = 0.0f,		// para la animación del águila
 		trasladaAguilaZ = 0.0f,
 		orientaAlasAguilaY = 0.0f,
-		orientaAlasAguilaX = 0.0f;
+		orientaAlasAguilaX = 0.0f,
+		patoOrientacion = 0.0f,
+		patoIncremento = 0.0f;
+
+//Pato posicion
+glm::vec3 patoPos(0.0f, 0.0f, 0.0f);
 		
 bool	animacion = false,
 		recorrido1 = true,	// para la animación del autobús
@@ -596,6 +601,13 @@ void animate(void)
 			}
 		}
 	}
+
+	//Animación Pato
+	patoIncremento -= 0.0085f;
+	patoPos.x = 130.0f * cos(patoIncremento);
+	patoPos.z = 130.0f * sin(patoIncremento);
+	patoOrientacion += 0.49f;
+
 }
 
 void getResolution()
@@ -687,7 +699,7 @@ int main()
 	Model Bus("resources/objects/Christian/Bus/Bus.obj");
 	Model Arbol("resources/objects/Christian/Arbol/Arbol.obj");
 	Model ArbolVerde("resources/objects/Christian/arbolVerde/arbolVerde.obj");
-	//Model Perro("resources/objects/Pablo/perro/perroProto.obj");
+	Model perro("resources/objects/Pablo/perro/perro.obj");
 	Model hojasArbol("resources/objects/Christian/Arbol/hojasArbol.obj");
 	Model tronco("resources/objects/Christian/Arbol/tronco.obj");
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
@@ -696,6 +708,9 @@ int main()
 	Model cuerpo("resources/objects/Christian/eagle/cuerpo.obj");
 	Model alaIzquierda("resources/objects/Christian/eagle/alaIzquierda.obj");
 	Model alaDerecha("resources/objects/Christian/eagle/alaDerecha.obj");
+	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
+	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
+	Model pato("resources/objects/Pablo/pato/pato.obj");
 	ModelAnim personajeM("resources/objects/Christian/personajeM/personajeM.dae");
 	personajeM.initShaders(animShader.ID);
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
@@ -1200,6 +1215,19 @@ int main()
 		staticShader.setMat4("model", model);
 		fuente.Draw(staticShader);
 
+		/*************************************** PATO **************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(patoPos.x, 30.0f + patoPos.y, patoPos.z));
+		model = glm::rotate(model, glm::radians(270.0f + patoOrientacion), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		staticShader.setMat4("model", model);
+		pato.Draw(staticShader);
+
+		/*************************************** PERRO *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(500.0f, 10.0f, 400.0f));
+		model = glm::rotate(model, glm::radians(139.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		perro.Draw(staticShader);
 		
 		/************************************  Edificio *************************************/
 		glEnable(GL_BLEND);
