@@ -89,7 +89,11 @@ float	movAuto_x = 0.0f,	// para la animación del autobús
 //Pato posicion
 glm::vec3 patoPos(0.0f, 0.0f, 0.0f);
 		
-bool	animacion = false,
+bool	animacion1 = false,
+		animacion2 = false,
+		animacion3 = false,
+		animacion4 = false,
+		animacion5 = false,
 		recorrido1 = true,	// para la animación del autobús
 		recorrido2 = false,
 		recorrido3 = false,
@@ -231,12 +235,9 @@ void animate(void)
 		}
 	}
 
-	//VehÃ­culo
-	if (animacion)
+	//********************************* ANIMACIÓN DEL AUTOBÚS *************************************
+	if (animacion1)
 	{
-
-		//********************************* ANIMACIÓN DEL AUTOBÚS *************************************
-
 		if (recorrido1) {
 			movAuto_x -= 10.0f;
 			if (movAuto_x <= -500.0f) {
@@ -321,9 +322,10 @@ void animate(void)
 				movAuto_x = 0.0f;
 			}
 		}
-
-		//******************************************ANIMACIÓN DEL ÁRBOL *******************************
-
+	}
+	
+	//******************************************ANIMACIÓN DEL ÁRBOL *******************************
+	if(animacion2){
 		if (estadoArbol1){
 			orientaArbolX += 0.08f;
 			orientaArbolY += 0.08f;
@@ -372,8 +374,10 @@ void animate(void)
 				estadoArbol1 = true;
 			}
 		}
+	}
 
-		// ******************************** ANIMACIÓN DE LAS HOJAS CAÍDAS ******************************
+	// ******************************** ANIMACIÓN DE LAS HOJAS CAÍDAS ******************************
+	if (animacion3){
 		if (estadoHoja1) {
 			orientaHojaX = 0.0f;
 			orientaHojaY = 0.0f;
@@ -482,9 +486,9 @@ void animate(void)
 				estadoHoja1 = true;
 			}
 		}
+	}
 
-
-		// ********************************* ANIMACIÓN DEL PERDONAJE M ********************************
+	// ********************************* ANIMACIÓN DEL PERDONAJE M *******************************
 		if (estadoPersonajeM1) {
 			trasladaPersonajeH_Z += 6.0f;
 			trasladaPersonajeH_X = 0.0f;
@@ -545,8 +549,9 @@ void animate(void)
 				trasladaPersonajeH_X = 0.0f;
 			}
 		}
-
-		//********************************** ANIMACIÓN DEL ÁGUILA **********************************
+	
+	//********************************** ANIMACIÓN DEL ÁGUILA **********************************
+	if(animacion5){
 		if(estadoAguila1){
 			orientaAlasAguilaY += 5.0f;
 			if(orientaAlasAguilaY >= 30.0f){
@@ -715,10 +720,6 @@ int main()
 	personajeM.initShaders(animShader.ID);
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
 	personajeH.initShaders(animShader.ID);
-
-	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
-	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
-
 	//Gallery
 	Model gallery("resources/objects/Elizabeth/galeria/galeria.obj");
 	//House
@@ -1457,9 +1458,18 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		lightPosition.x--;
 
-	//Car animation
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		animacion ^= true;
+	//Bus animation
+	if (key == GLFW_KEY_U && action == GLFW_PRESS)
+		animacion1 ^= true;
+	//Tree animation 
+	if (key == GLFW_KEY_I && action == GLFW_PRESS)
+		animacion2 ^= true;
+	//Tree leaves
+	if (key == GLFW_KEY_O && action == GLFW_PRESS)
+		animacion3 ^= true;
+	//eagle animation
+	if (key == GLFW_KEY_P && action == GLFW_PRESS)
+		animacion5 ^= true;
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
