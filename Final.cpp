@@ -623,7 +623,7 @@ int main()
 	Model Bus("resources/objects/Christian/Bus/Bus.obj");
 	Model Arbol("resources/objects/Christian/Arbol/Arbol.obj");
 	Model ArbolVerde("resources/objects/Christian/arbolVerde/arbolVerde.obj");
-	//Model Perro("resources/objects/Pablo/perro/perroProto.obj");
+	Model perro("resources/objects/Pablo/perro/perro.obj");
 	Model hojasArbol("resources/objects/Christian/Arbol/hojasArbol.obj");
 	Model tronco("resources/objects/Christian/Arbol/tronco.obj");
 	Model hojasCaidas("resources/objects/Christian/hojasCaidas/hojasCaidas.obj");
@@ -1124,6 +1124,13 @@ int main()
 		model = glm::scale(model, glm::vec3(0.5f));
 		staticShader.setMat4("model", model);
 		pato.Draw(staticShader);
+
+		/*************************************** PERRO *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(500.0f, 10.0f, 400.0f));
+		model = glm::rotate(model, glm::radians(139.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f));
+		staticShader.setMat4("model", model);
+		perro.Draw(staticShader);
 		
 		/************************************  Edificio *************************************/
 		glEnable(GL_BLEND);
