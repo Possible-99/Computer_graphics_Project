@@ -150,11 +150,11 @@ bool	turnOnWalkMan = true;
 float	posX = 0.0f,
 		posY = 0.0f,
 		posZ = 0.0f,
-		rotRodIzq = 0.0f,
+		rotRodIzq = 0.0f;
 float	incX = 0.0f,
 		incY = 0.0f,
 		incZ = 0.0f,
-		rotInc = 0.0f,
+		rotInc = 0.0f;
 
 #define MAX_FRAMES 9
 int i_max_steps = 60;
