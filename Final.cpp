@@ -870,6 +870,8 @@ int main()
 		staticShader.setVec3("viewPos", camera.Position);
 		staticShader.setVec3("dirLight.direction", lightDirection);
 		staticShader.setVec3("dirLight.ambient", glm::vec3(variableX, variableY, variableZ));
+		//En caso de ver las luces externas
+		//staticShader.setVec3("dirLight.ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("dirLight.diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
 
@@ -958,6 +960,10 @@ int main()
 		staticShader.setFloat("pointLight[13].linear", 0.009f);
 		staticShader.setFloat("pointLight[13].quadratic", 0.0000032f);
 
+
+		//Luces aun con errores a causa de un escalado mal hecho 
+		/*
+
 		staticShader.setVec3("pointLight[14].position", glm::vec3(1280.0f, 215.0f, -500.0f));     //luz lámpara interna casa 2 piso 1
 		staticShader.setVec3("pointLight[14].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[14].constant", 1.0f);
@@ -1028,7 +1034,7 @@ int main()
 		staticShader.setVec3("pointLight[25].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[25].constant", 1.0f);
 		staticShader.setFloat("pointLight[25].linear", 0.009f);
-		staticShader.setFloat("pointLight[25].quadratic", 0.00032f);
+		staticShader.setFloat("pointLight[25].quadratic", 0.00032f);*/
 
 		staticShader.setFloat("material_shininess", 32.0f);
 
@@ -1575,24 +1581,29 @@ int main()
 
 		/************************************** Houses *************************************/
 
-				//House 1
-		model = glm::translate(model, glm::vec3(-85.0f, 0.0f, 535.0f));
+		//House 1
+		model = glm::translate(model, glm::vec3(-105.0f, 0.0f, 545.0f));
 		model = glm::scale(model, glm::vec3(2.3f));
+		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 540.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 2
 		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 3
 		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 4
 		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
