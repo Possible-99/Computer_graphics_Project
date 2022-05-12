@@ -645,65 +645,57 @@ void animate(void)
 		if (walkManState == 2) {
 			movWalkManX -= incremFactor;
 			walkManAngle = 270.0f;
-			if (movWalkManX <= -300) walkManState = 3;
+			if (movWalkManX <= -1100) walkManState = 3;
 		}
 
 		if (walkManState == 3) {
-			movWalkManZ += 0.98170732f * 4.0f;
-			movWalkManX -= 0.98170732f * 4.0f;
-			walkManAngle = 315.0f;
-
-			if ( movWalkManX<= -950 && movWalkManZ >= -550) walkManState = 4;
+			movWalkManZ += incremFactor;
+			walkManAngle = 0.0f;
+			if (movWalkManZ >= -400) walkManState = 4;
 		}
 
 		if (walkManState == 4) {
-			movWalkManX += incremFactor;
-			walkManAngle = 90.0f;
-			if (movWalkManX >= -1090) walkManState = 5;
+			movWalkManZ += incremFactor;
+			walkManAngle = 0.0f;
+			if (movWalkManZ >= -250) walkManState = 5;
 		}
 
 		if (walkManState == 5) {
-			movWalkManZ += incremFactor;
-			walkManAngle = 0.0f;
-			if (movWalkManZ >= -250) walkManState = 6;
+			movWalkManX -= incremFactor;
+			walkManAngle = 270.0f;
+			if (movWalkManX <= -1250) walkManState = 6;
 		}
 
 		if (walkManState == 6) {
-			movWalkManX -= incremFactor;
-			walkManAngle = 270.0f;
-			if (movWalkManX <= -1250) walkManState = 7;
+			movWalkManZ += incremFactor;
+			walkManAngle = 0.0f;
+			if (movWalkManZ >= -330) walkManState = 7;
 		}
 
 		if (walkManState == 7) {
-			movWalkManZ += incremFactor;
-			walkManAngle = 0.0f;
-			if (movWalkManZ >= -330) walkManState = 8;
+			movWalkManZ -= incremFactor;
+			walkManAngle = 180.0f;
+			if (movWalkManZ <= -150) walkManState = 8;
 		}
 
 		if (walkManState == 8) {
-			movWalkManZ -= incremFactor;
-			walkManAngle = 180.0f;
-			if (movWalkManZ <= -150) walkManState = 9;
+			movWalkManX += incremFactor;
+			walkManAngle = 90.0f;
+			if (movWalkManX >= -300) walkManState = 9;
 		}
 
 		if (walkManState == 9) {
-			movWalkManX += incremFactor;
-			walkManAngle = 90.0f;
-			if (movWalkManX >= -300) walkManState = 10;
+			movWalkManZ -= incremFactor;
+			walkManAngle = 180.0f;
+			if (movWalkManZ <= -320) walkManState = 10;
 		}
 
 		if (walkManState == 10) {
-			movWalkManZ -= incremFactor;
-			walkManAngle = 180.0f;
-			if (movWalkManZ <= -320) walkManState = 11;
-		}
-
-		if (walkManState == 11) {
 			movWalkManX += incremFactor;
 			walkManAngle = 90.0f;
-			if (movWalkManX >= 345) walkManState = 12;
+			if (movWalkManX >= 345) walkManState = 11;
 		}
-		if (walkManState == 12) {
+		if (walkManState == 11) {
 			movWalkManZ += 0.98170732f * 6.0f;
 			movWalkManX += 0.98170732f * 6.0f;
 			walkManAngle = 45.53f;
@@ -1073,7 +1065,7 @@ int main()
 		/********************************* PERSONAJE M ********************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f + trasladaPersonajeH_X, 4.0f, 600.0f + trasladaPersonajeH_Z));
 		model = glm::rotate(model, glm::radians(orientaPersonajeH_Y), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(1.2f));
+		model = glm::scale(model, glm::vec3(0.75));
 		animShader.setMat4("model", model);
 		personajeM.Draw(animShader);
 
@@ -1086,7 +1078,7 @@ int main()
 		/********************************* Walking Man ********************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(movWalkManX, 0.0f, movWalkManZ));
 		model = glm::rotate(model, glm::radians(walkManAngle), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::scale(model, glm::vec3(0.85f));
 		animShader.setMat4("model", model);
 		walkingMan.Draw(animShader);
 
@@ -1584,23 +1576,23 @@ int main()
 		/************************************** Houses *************************************/
 
 		//House 1
-		model = glm::translate(model, glm::vec3(-105.0f, 0.0f, 545.0f));
-		model = glm::scale(model, glm::vec3(2.3f));
+		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 540.0f));
+		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 2
-		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 3
-		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 4
-		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
