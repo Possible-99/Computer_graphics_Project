@@ -39,7 +39,7 @@ void animate(void);
 // settings
 unsigned int SCR_WIDTH = 800;
 unsigned int SCR_HEIGHT = 600;
-GLFWmonitor *monitors;
+GLFWmonitor* monitors;
 
 void getResolution(void);
 
@@ -57,104 +57,104 @@ bool firstMouse = true;
 const int FPS = 60;
 const int LOOP_TIME = 1000 / FPS; // = 16 milisec // 1000 millisec == 1 sec
 double	deltaTime = 0.0f,
-		lastFrame = 0.0f;
+lastFrame = 0.0f;
 
 //Lighting
 glm::vec3 lightDirection(0.0f, -1.0f, -1.0f);
 
 //Count 
-float countAux  = 0.0f,
-      variableX = 0.0f,
-      variableY = 0.0f,
-      variableZ = 0.0f;
+float countAux = 0.0f,
+variableX = 0.0f,
+variableY = 0.0f,
+variableZ = 0.0f;
 boolean anochecer = true;
 
 // posiciones
 //float x = 0.0f;
 //float y = 0.0f;
 float	movAuto_x = 0.0f,	// para la animación del autobús
-		movAuto_z = 0.0f,
-		orienta = 0.0f,
-		orientaArbolX = 0.0f,	// para la animación del árbol
-		orientaArbolY = 0.0f,
-		orientaArbolZ = 0.0f,
-		orientaHojaX = 0.0f,	// para la animación de las hojas caídas
-		orientaHojaY = 0.0f,
-		trasladaHojaY = 0.0f,
-		trasladaHojaZ = 0.0f,
-		orientaPersonajeH_Y = 0.0f,	// para la animación del personaje M
-		trasladaPersonajeH_X = 0.0f,
-		trasladaPersonajeH_Z = 0.0f,
-		trasladaAguilaX = 0.0f,		// para la animación del águila
-		trasladaAguilaZ = 0.0f,
-		orientaAlasAguilaY = 0.0f,
-		orientaAlasAguilaX = 0.0f,
-		patoOrientacion = 0.0f,
-		patoIncremento = 0.0f;
+movAuto_z = 0.0f,
+orienta = 0.0f,
+orientaArbolX = 0.0f,	// para la animación del árbol
+orientaArbolY = 0.0f,
+orientaArbolZ = 0.0f,
+orientaHojaX = 0.0f,	// para la animación de las hojas caídas
+orientaHojaY = 0.0f,
+trasladaHojaY = 0.0f,
+trasladaHojaZ = 0.0f,
+orientaPersonajeH_Y = 0.0f,	// para la animación del personaje M
+trasladaPersonajeH_X = 0.0f,
+trasladaPersonajeH_Z = 0.0f,
+trasladaAguilaX = 0.0f,		// para la animación del águila
+trasladaAguilaZ = 0.0f,
+orientaAlasAguilaY = 0.0f,
+orientaAlasAguilaX = 0.0f,
+patoOrientacion = 0.0f,
+patoIncremento = 0.0f;
 
 //Pato posicion
 glm::vec3 patoPos(0.0f, 0.0f, 0.0f);
-		
+
 bool	animacion1 = false,
-		animacion2 = false,
-		animacion3 = false,
-		animacion4 = false,
-		animacion5 = false,
-		recorrido1 = true,	// para la animación del autobús
-		recorrido2 = false,
-		recorrido3 = false,
-		recorrido4 = false,
-		recorrido5 = false,
-		recorrido6 = false,
-		recorrido7 = false,
-		recorrido8 = false,
-		recorrido9 = false,
-		estadoArbol1 = true, // para la animación del árbol
-		estadoArbol2 = false,
-		estadoArbol3 = false,
-		estadoArbol4 = false,
-		estadoArbol5 = false,
-		estadoArbol6 = false,
-		estadoHoja1 = false, // para la animación de las hojas caídas
-		estadoHoja2 = true,
-		estadoHoja3 = false,
-		estadoHoja4 = false,
-		estadoHoja5 = false,
-		estadoHoja6 = false,
-		estadoHoja7 = false,
-		estadoHoja8 = false,
-		estadoHoja9 = false,
-		estadoHoja10 = false,
-		estadoPersonajeM1 = true, // para la animación del personaje M
-		estadoPersonajeM2 = false,
-		estadoPersonajeM3 = false,
-		estadoPersonajeM4 = false,
-		estadoPersonajeM5 = false,
-		estadoPersonajeM6 = false,
-		estadoAguila1 = true,		// para la animación del águila
-		estadoAguila2 = false,
-		estadoAguila3 = true,
-		estadoAguila4 = false,
-		estadoAguila5 = false,
-		estadoAguila6 = false;
+animacion2 = false,
+animacion3 = false,
+animacion4 = false,
+animacion5 = false,
+recorrido1 = true,	// para la animación del autobús
+recorrido2 = false,
+recorrido3 = false,
+recorrido4 = false,
+recorrido5 = false,
+recorrido6 = false,
+recorrido7 = false,
+recorrido8 = false,
+recorrido9 = false,
+estadoArbol1 = true, // para la animación del árbol
+estadoArbol2 = false,
+estadoArbol3 = false,
+estadoArbol4 = false,
+estadoArbol5 = false,
+estadoArbol6 = false,
+estadoHoja1 = false, // para la animación de las hojas caídas
+estadoHoja2 = true,
+estadoHoja3 = false,
+estadoHoja4 = false,
+estadoHoja5 = false,
+estadoHoja6 = false,
+estadoHoja7 = false,
+estadoHoja8 = false,
+estadoHoja9 = false,
+estadoHoja10 = false,
+estadoPersonajeM1 = true, // para la animación del personaje M
+estadoPersonajeM2 = false,
+estadoPersonajeM3 = false,
+estadoPersonajeM4 = false,
+estadoPersonajeM5 = false,
+estadoPersonajeM6 = false,
+estadoAguila1 = true,		// para la animación del águila
+estadoAguila2 = false,
+estadoAguila3 = true,
+estadoAguila4 = false,
+estadoAguila5 = false,
+estadoAguila6 = false;
 
 //Walking Man
 int		walkManState = 0;
 float	walkManAngle = 270.0f,
-		movWalkManX  = 1150.0f,
-		movWalkManZ  = 500.0f,
-		incremFactor = 6.0f;
+movWalkManX = 1150.0f,
+movWalkManZ = 500.0f,
+incremFactor = 6.0f;
 bool	turnOnWalkMan = true;
 
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
-		posY = 0.0f,
-		posZ = 0.0f,
-		rotRodIzq = 0.0f;
+posY = 0.0f,
+posZ = 0.0f,
+rotRodIzq = 0.0f;
 float	incX = 0.0f,
-		incY = 0.0f,
-		incZ = 0.0f,
-		rotInc = 0.0f;
+incY = 0.0f,
+incZ = 0.0f,
+rotInc = 0.0f;
 
 #define MAX_FRAMES 9
 int i_max_steps = 60;
@@ -343,53 +343,53 @@ void animate(void)
 			}
 		}
 	}
-	
+
 	//******************************************ANIMACIÓN DEL ÁRBOL *******************************
-	if(animacion2){
-		if (estadoArbol1){
+	if (animacion2) {
+		if (estadoArbol1) {
 			orientaArbolX += 0.08f;
 			orientaArbolY += 0.08f;
-			if(orientaArbolX >= 3.0f){
+			if (orientaArbolX >= 3.0f) {
 				estadoArbol1 = false;
 				estadoArbol2 = true;
 			}
-		} 
-		if (estadoArbol2){
+		}
+		if (estadoArbol2) {
 			orientaArbolX -= 0.08f;
 			orientaArbolY -= 0.08f;
-			if(orientaArbolX <= 0.0f){
+			if (orientaArbolX <= 0.0f) {
 				estadoArbol2 = false;
 				estadoArbol3 = true;
 			}
 		}
-		if (estadoArbol3){
+		if (estadoArbol3) {
 			orientaArbolZ += 0.08f;
 			orientaArbolY += 0.08f;
-			if(orientaArbolZ >= 3.0f){
+			if (orientaArbolZ >= 3.0f) {
 				estadoArbol3 = false;
 				estadoArbol4 = true;
 			}
 		}
-		if (estadoArbol4){
+		if (estadoArbol4) {
 			orientaArbolZ -= 0.08f;
 			orientaArbolY -= 0.08f;
-			if(orientaArbolZ <= 0.0f){
+			if (orientaArbolZ <= 0.0f) {
 				estadoArbol4 = false;
 				estadoArbol5 = true;
 			}
 		}
-		if (estadoArbol5){
+		if (estadoArbol5) {
 			orientaArbolX += 0.12f;
 			orientaArbolY += 0.12f;
-			if(orientaArbolX >= 4.0f){
+			if (orientaArbolX >= 4.0f) {
 				estadoArbol5 = false;
 				estadoArbol6 = true;
 			}
-		} 
-		if (estadoArbol6){
+		}
+		if (estadoArbol6) {
 			orientaArbolX -= 0.07f;
 			orientaArbolY -= 0.07f;
-			if(orientaArbolX <= 0.0f){
+			if (orientaArbolX <= 0.0f) {
 				estadoArbol6 = false;
 				estadoArbol1 = true;
 			}
@@ -397,7 +397,7 @@ void animate(void)
 	}
 
 	// ******************************** ANIMACIÓN DE LAS HOJAS CAÍDAS ******************************
-	if (animacion3){
+	if (animacion3) {
 		if (estadoHoja1) {
 			orientaHojaX = 0.0f;
 			orientaHojaY = 0.0f;
@@ -410,10 +410,10 @@ void animate(void)
 			orientaHojaY -= 0.5f;
 			trasladaHojaY -= 0.8f;
 			trasladaHojaZ -= 0.8f;
-			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f){
+			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f) {
 				estadoHoja2 = false;
 				estadoHoja3 = true;
-			} 
+			}
 			if (trasladaHojaY <= -400.0f) {
 				estadoHoja1 = true;
 			}
@@ -422,17 +422,17 @@ void animate(void)
 			orientaHojaX += 1.0f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaZ -= 0.8f;
-			if (orientaHojaX >= 5.0f){
+			if (orientaHojaX >= 5.0f) {
 				estadoHoja3 = false;
 				estadoHoja4 = true;
-			} 
+			}
 		}
 		if (estadoHoja4) {
 			orientaHojaX += 0.5f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaY -= 0.8f;
 			trasladaHojaZ += 0.8f;
-			if (trasladaHojaZ >= 40.0f && orientaHojaX >= 5.0f){
+			if (trasladaHojaZ >= 40.0f && orientaHojaX >= 5.0f) {
 				estadoHoja4 = false;
 				estadoHoja5 = true;
 			}
@@ -444,17 +444,17 @@ void animate(void)
 			orientaHojaX -= 1.0f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaZ += 0.8f;
-			if (orientaHojaX <= -5.0f){
+			if (orientaHojaX <= -5.0f) {
 				estadoHoja5 = false;
 				estadoHoja6 = true;
-			} 
+			}
 		}
 		if (estadoHoja6) {
 			orientaHojaX -= 0.5f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaY -= 0.8f;
 			trasladaHojaZ -= 0.8f;
-			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f){
+			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f) {
 				estadoHoja6 = false;
 				estadoHoja7 = true;
 			}
@@ -466,17 +466,17 @@ void animate(void)
 			orientaHojaX += 1.0f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaZ -= 0.8f;
-			if (orientaHojaX >= 5.0f){
+			if (orientaHojaX >= 5.0f) {
 				estadoHoja7 = false;
 				estadoHoja8 = true;
-			} 
+			}
 		}
 		if (estadoHoja8) {
 			orientaHojaX += 0.5f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaY -= 0.8f;
 			trasladaHojaZ += 0.8f;
-			if (trasladaHojaZ >= 40.0f && orientaHojaX >= 5.0f){
+			if (trasladaHojaZ >= 40.0f && orientaHojaX >= 5.0f) {
 				estadoHoja8 = false;
 				estadoHoja9 = true;
 			}
@@ -488,17 +488,17 @@ void animate(void)
 			orientaHojaX -= 1.0f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaZ += 0.8f;
-			if (orientaHojaX <= -10.0f){
+			if (orientaHojaX <= -10.0f) {
 				estadoHoja9 = false;
 				estadoHoja10 = true;
-			} 
+			}
 		}
 		if (estadoHoja10) {
 			orientaHojaX -= 0.5f;
 			orientaHojaY -= 0.5f;
 			trasladaHojaY -= 0.8f;
 			trasladaHojaZ -= 0.8f;
-			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f){
+			if (trasladaHojaZ <= -40.0f && orientaHojaX <= -5.0f) {
 				estadoHoja10 = false;
 				estadoHoja2 = true;
 			}
@@ -509,115 +509,115 @@ void animate(void)
 	}
 
 	// ********************************* ANIMACIÓN DEL PERDONAJE M *******************************
-		if (estadoPersonajeM1) {
-			trasladaPersonajeH_Z += 6.0f;
+	if (estadoPersonajeM1) {
+		trasladaPersonajeH_Z += 6.0f;
+		trasladaPersonajeH_X = 0.0f;
+		orientaPersonajeH_Y = 0.0f;
+		if (trasladaPersonajeH_Z >= 650.0f) {
+			estadoPersonajeM1 = false;
+			estadoPersonajeM2 = true;
+			trasladaPersonajeH_Z = 650.0f;
+		}
+	}
+	if (estadoPersonajeM2) {
+		trasladaPersonajeH_Z += 0.0f;
+		trasladaPersonajeH_X += 6.0f;
+		orientaPersonajeH_Y = 90.0f;
+		if (trasladaPersonajeH_X >= 650.0f) {
+			estadoPersonajeM2 = false;
+			estadoPersonajeM3 = true;
+			trasladaPersonajeH_X = 650.0f;
+		}
+	}
+	if (estadoPersonajeM3) {
+		trasladaPersonajeH_Z -= 4.0f;
+		trasladaPersonajeH_X += 4.0f;
+		orientaPersonajeH_Y = 135.0f;
+		if (trasladaPersonajeH_X >= 950.0f) {
+			estadoPersonajeM3 = false;
+			estadoPersonajeM4 = true;
+			trasladaPersonajeH_X = 950.0f;
+		}
+	}
+	if (estadoPersonajeM4) {
+		trasladaPersonajeH_Z -= 6.0f;
+		trasladaPersonajeH_X += 0.0f;
+		orientaPersonajeH_Y = 180.0f;
+		if (trasladaPersonajeH_Z <= -600.0f) {
+			estadoPersonajeM4 = false;
+			estadoPersonajeM5 = true;
+			trasladaPersonajeH_Z = -600.0f;
+		}
+	}
+	if (estadoPersonajeM5) {
+		trasladaPersonajeH_Z += 0.0f;
+		trasladaPersonajeH_X -= 6.0f;
+		orientaPersonajeH_Y = 270.0f;
+		if (trasladaPersonajeH_X <= 400.0f) {
+			estadoPersonajeM5 = false;
+			estadoPersonajeM6 = true;
+			trasladaPersonajeH_X = 400.0f;
+		}
+	}
+	if (estadoPersonajeM6) {
+		trasladaPersonajeH_Z += 4.0f;
+		trasladaPersonajeH_X -= 4.0f;
+		orientaPersonajeH_Y = 315.0f;
+		if (trasladaPersonajeH_X <= 0.0f) {
+			estadoPersonajeM6 = false;
+			estadoPersonajeM1 = true;
 			trasladaPersonajeH_X = 0.0f;
-			orientaPersonajeH_Y = 0.0f;
-			if (trasladaPersonajeH_Z >= 650.0f){
-				estadoPersonajeM1 = false;
-				estadoPersonajeM2 = true;
-				trasladaPersonajeH_Z = 650.0f;
-			}
 		}
-		if (estadoPersonajeM2) {
-			trasladaPersonajeH_Z += 0.0f;
-			trasladaPersonajeH_X += 6.0f;
-			orientaPersonajeH_Y = 90.0f;
-			if (trasladaPersonajeH_X >= 650.0f){
-				estadoPersonajeM2 = false;
-				estadoPersonajeM3 = true;
-				trasladaPersonajeH_X = 650.0f;
-			}
-		}
-		if (estadoPersonajeM3) {
-			trasladaPersonajeH_Z -= 4.0f;
-			trasladaPersonajeH_X += 4.0f;
-			orientaPersonajeH_Y = 135.0f;
-			if (trasladaPersonajeH_X >= 950.0f) {
-				estadoPersonajeM3 = false;
-				estadoPersonajeM4 = true;
-				trasladaPersonajeH_X = 950.0f;
-			}
-		}
-		if (estadoPersonajeM4) {
-			trasladaPersonajeH_Z -= 6.0f;
-			trasladaPersonajeH_X += 0.0f;
-			orientaPersonajeH_Y = 180.0f;
-			if (trasladaPersonajeH_Z <= -600.0f) {
-				estadoPersonajeM4 = false;
-				estadoPersonajeM5 = true;
-				trasladaPersonajeH_Z = -600.0f;
-			}
-		}
-		if (estadoPersonajeM5) {
-			trasladaPersonajeH_Z += 0.0f;
-			trasladaPersonajeH_X -= 6.0f;
-			orientaPersonajeH_Y = 270.0f;
-			if (trasladaPersonajeH_X <= 400.0f) {
-				estadoPersonajeM5 = false;
-				estadoPersonajeM6 = true;
-				trasladaPersonajeH_X = 400.0f;
-			}
-		}
-		if (estadoPersonajeM6) {
-			trasladaPersonajeH_Z += 4.0f;
-			trasladaPersonajeH_X -= 4.0f;
-			orientaPersonajeH_Y = 315.0f;
-			if (trasladaPersonajeH_X <= 0.0f) {
-				estadoPersonajeM6 = false;
-				estadoPersonajeM1 = true;
-				trasladaPersonajeH_X = 0.0f;
-			}
-		}
-	
+	}
+
 	//********************************** ANIMACIÓN DEL ÁGUILA **********************************
-	if(animacion5){
-		if(estadoAguila1){
+	if (animacion5) {
+		if (estadoAguila1) {
 			orientaAlasAguilaY += 5.0f;
-			if(orientaAlasAguilaY >= 30.0f){
+			if (orientaAlasAguilaY >= 30.0f) {
 				estadoAguila1 = false;
 				estadoAguila2 = true;
 			}
 		}
-		if(estadoAguila2){
+		if (estadoAguila2) {
 			orientaAlasAguilaY -= 5.0f;
-			if(orientaAlasAguilaY <= 0.0f){
+			if (orientaAlasAguilaY <= 0.0f) {
 				estadoAguila2 = false;
 				estadoAguila1 = true;
 			}
 		}
-		if(estadoAguila3){
+		if (estadoAguila3) {
 			trasladaAguilaX += 10.0f;
 			trasladaAguilaZ += 10.0f;
 			orientaAlasAguilaX = 0.0f;
-			if(trasladaAguilaX >= 1500.0f){
+			if (trasladaAguilaX >= 1500.0f) {
 				estadoAguila3 = false;
 				estadoAguila4 = true;
 			}
 		}
-		if(estadoAguila4){
+		if (estadoAguila4) {
 			trasladaAguilaX += 0.0f;
 			trasladaAguilaZ += 10.0f;
 			orientaAlasAguilaX = 45.0f;
-			if(trasladaAguilaZ >= 3000.0f){
+			if (trasladaAguilaZ >= 3000.0f) {
 				estadoAguila4 = false;
 				estadoAguila5 = true;
 			}
 		}
-		if(estadoAguila5){
+		if (estadoAguila5) {
 			trasladaAguilaX += 10.0f;
 			trasladaAguilaZ += 10.0f;
 			orientaAlasAguilaX = 0.0f;
-			if(trasladaAguilaZ >= 4500.0f){
+			if (trasladaAguilaZ >= 4500.0f) {
 				estadoAguila5 = false;
 				estadoAguila6 = true;
 			}
 		}
-		if(estadoAguila6){
+		if (estadoAguila6) {
 			trasladaAguilaX += 10.0f;
 			trasladaAguilaZ += 0.0f;
 			orientaAlasAguilaX = -45.0f;
-			if(trasladaAguilaX >= 4000.0f){
+			if (trasladaAguilaX >= 4000.0f) {
 				estadoAguila6 = false;
 				estadoAguila3 = true;
 				trasladaAguilaX = 0.0f;
@@ -628,7 +628,7 @@ void animate(void)
 	}
 
 	//********************************** Walking Man Animation **********************************
-	if(turnOnWalkMan){
+	if (turnOnWalkMan) {
 
 		if (walkManState == 0) {
 			movWalkManX -= incremFactor;
@@ -699,7 +699,7 @@ void animate(void)
 			movWalkManZ += 0.98170732f * 6.0f;
 			movWalkManX += 0.98170732f * 6.0f;
 			walkManAngle = 45.53f;
-			if (movWalkManX >= 1150 && movWalkManZ >= 500) walkManState = 0; 
+			if (movWalkManX >= 1150 && movWalkManZ >= 500) walkManState = 0;
 		}
 	}
 
@@ -713,7 +713,7 @@ void animate(void)
 
 void getResolution()
 {
-	const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
 	SCR_WIDTH = mode->width;
 	SCR_HEIGHT = (mode->height) - 80;
@@ -850,7 +850,7 @@ int main()
 	while (!glfwWindowShouldClose(window))
 	{
 		skyboxShader.setInt("skybox", 0);
-		
+
 		// per-frame time logic
 		// --------------------
 		lastFrame = SDL_GetTicks();
@@ -869,7 +869,8 @@ int main()
 		staticShader.use();
 		staticShader.setVec3("viewPos", camera.Position);
 		staticShader.setVec3("dirLight.direction", lightDirection);
-		staticShader.setVec3("dirLight.ambient", glm::vec3(variableX, variableY, variableZ));
+		//staticShader.setVec3("dirLight.ambient", glm::vec3(variableX, variableY, variableZ));
+		staticShader.setVec3("dirLight.ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("dirLight.diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
 
@@ -982,49 +983,49 @@ int main()
 		staticShader.setFloat("pointLight[17].linear", 0.009f);
 		staticShader.setFloat("pointLight[17].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[18].position", glm::vec3(1689.0f, 215.0f, 695.0f));     //luz lámpara interna casa 1 piso 1
+		staticShader.setVec3("pointLight[18].position", glm::vec3(1689.0f, 215.0f, 675.0f));     //luz lámpara interna casa 1 piso 1
 		staticShader.setVec3("pointLight[18].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[18].constant", 1.0f);
 		staticShader.setFloat("pointLight[18].linear", 0.009f);
 		staticShader.setFloat("pointLight[18].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[19].position", glm::vec3(1285.0f, 215.0f, 695.0f));     //luz lámpara interna casa 1 piso 1
+		staticShader.setVec3("pointLight[19].position", glm::vec3(1285.0f, 215.0f, 675.0f));     //luz lámpara interna casa 1 piso 1
 		staticShader.setVec3("pointLight[19].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[19].constant", 1.0f);
 		staticShader.setFloat("pointLight[19].linear", 0.009f);
 		staticShader.setFloat("pointLight[19].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[20].position", glm::vec3(1700.0f, 550.0f, -330.0f));     //luz lámpara interna casa 2 piso 2
+		staticShader.setVec3("pointLight[20].position", glm::vec3(1700.0f, 500.0f, -330.0f));     //luz lámpara interna casa 2 piso 2
 		staticShader.setVec3("pointLight[20].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[20].constant", 1.0f);
 		staticShader.setFloat("pointLight[20].linear", 0.009f);
 		staticShader.setFloat("pointLight[20].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[21].position", glm::vec3(1730.0f, 550.0f, 490.0f));     //luz lámpara interna casa 1 piso 2
+		staticShader.setVec3("pointLight[21].position", glm::vec3(1730.0f, 500.0f, 420.0f));     //luz lámpara interna casa 1 piso 2
 		staticShader.setVec3("pointLight[21].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[21].constant", 1.0f);
 		staticShader.setFloat("pointLight[21].linear", 0.009f);
 		staticShader.setFloat("pointLight[21].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[22].position", glm::vec3(1200.0f, 875.0f, -250.0f));     //luz lámpara interna casa 2 piso 3
+		staticShader.setVec3("pointLight[22].position", glm::vec3(1200.0f, 750.0f, -290.0f));     //luz lámpara interna casa 2 piso 3
 		staticShader.setVec3("pointLight[22].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[22].constant", 1.0f);
 		staticShader.setFloat("pointLight[22].linear", 0.009f);
 		staticShader.setFloat("pointLight[22].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[23].position", glm::vec3(1600.0f, 875.0f, -100.0f));     //luz lámpara interna casa 2 piso 3
+		staticShader.setVec3("pointLight[23].position", glm::vec3(1600.0f, 720.0f, -110.0f));     //luz lámpara interna casa 2 piso 3
 		staticShader.setVec3("pointLight[23].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[23].constant", 1.0f);
 		staticShader.setFloat("pointLight[23].linear", 0.009f);
 		staticShader.setFloat("pointLight[23].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[24].position", glm::vec3(1210.0f, 875.0f, 430.0f));     //luz lámpara interna casa 1 piso 3
+		staticShader.setVec3("pointLight[24].position", glm::vec3(1210.0f, 750.0f, 400.0f));     //luz lámpara interna casa 1 piso 3
 		staticShader.setVec3("pointLight[24].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[24].constant", 1.0f);
 		staticShader.setFloat("pointLight[24].linear", 0.009f);
 		staticShader.setFloat("pointLight[24].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[25].position", glm::vec3(1620.0f, 875.0f, 690.0f));     //luz lámpara interna casa 1 piso 3
+		staticShader.setVec3("pointLight[25].position", glm::vec3(1620.0f, 750.0f, 670.0f));     //luz lámpara interna casa 1 piso 3
 		staticShader.setVec3("pointLight[25].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[25].constant", 1.0f);
 		staticShader.setFloat("pointLight[25].linear", 0.009f);
@@ -1053,7 +1054,7 @@ int main()
 		animShader.use();
 		animShader.setMat4("projection", projection);
 		animShader.setMat4("view", view);
-	
+
 		animShader.setVec3("material.specular", glm::vec3(0.5f));
 		animShader.setFloat("material.shininess", 32.0f);
 		animShader.setVec3("light.ambient", ambientColor);
@@ -1096,7 +1097,7 @@ int main()
 		model = glm::scale(model, glm::vec3(15.0f));
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
-		
+
 		/****************************** ÁRBOLES PARQUE *****************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(650.0f, 30.0f, 315.0f));				//árbol animado (zona 1)
 		model = glm::scale(model, glm::vec3(1.0f, 1.2f, 1.0f));
@@ -1448,7 +1449,7 @@ int main()
 		EstacionBus.Draw(staticShader);
 
 		/************************************** BUS *************************************/
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f+movAuto_x, -30.0f, -1060.0f+ movAuto_z));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f + movAuto_x, -30.0f, -1060.0f + movAuto_z));
 		model = glm::scale(model, glm::vec3(20.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1474,7 +1475,7 @@ int main()
 		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
 		perro.Draw(staticShader);
-		
+
 		/************************************  Edificio *************************************/
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -1484,7 +1485,7 @@ int main()
 		staticShader.setMat4("model", model);
 		Edificio.Draw(staticShader);
 		glEnable(GL_BLEND);
-		
+
 		/************************************  Kiosko *************************************/
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, 1900.0f));
@@ -1492,7 +1493,7 @@ int main()
 		model = glm::rotate(model, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Kiosko.Draw(staticShader);
-		
+
 		/************************************** LÁMPARAS *************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1000.0f, 0.0f, -500.0f));			//lámpara alrededor (zona 1)
 		model = glm::scale(model, glm::vec3(3.5f));
@@ -1528,9 +1529,9 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		lampara.Draw(staticShader);
-			
+
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-600.0f, 0.0f, 1300.0f));			//lámpara alrededor (zona 3)
-		model = glm::scale(model, glm::vec3(3.5f));	
+		model = glm::scale(model, glm::vec3(3.5f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		lampara.Draw(staticShader);
@@ -1571,28 +1572,28 @@ int main()
 		staticShader.setMat4("model", model);
 		gallery.Draw(staticShader);
 
-		
-		
+
+
 		/************************************** Houses *************************************/
 
-		//House 1
-		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 540.0f));
-		model = glm::scale(model, glm::vec3(2.0f));
+				//House 1
+		model = glm::translate(model, glm::vec3(-85.0f, 0.0f, 535.0f));
+		model = glm::scale(model, glm::vec3(2.3f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 2
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 3
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 4
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
@@ -1654,7 +1655,7 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
+void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
