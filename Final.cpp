@@ -1,4 +1,12 @@
-﻿#include <Windows.h>
+﻿// PROYECTO FINAL LAB. CGeIHC
+//INTEGRANTES:
+//González Blando Pablo
+//Mendoza de la Vega Dulce Elizabeth
+//Rodea Coria Christian
+//Sánchez Rojo Juan Pablo
+//Tejada Orozco Diego Francisco
+
+#include <Windows.h>
 
 #include <glad/glad.h>
 #include <glfw3.h>	//main
@@ -1582,27 +1590,22 @@ int main()
 		/************************************** Houses *************************************/
 
 		//House 1
-		model = glm::translate(model, glm::vec3(-105.0f, 0.0f, 545.0f));
-		model = glm::scale(model, glm::vec3(2.3f));
 		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 540.0f));
 		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 2
-		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 3
-		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 4
-		model = glm::translate(model, glm::vec3(52.0f, 0.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
