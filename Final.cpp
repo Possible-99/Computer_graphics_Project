@@ -228,7 +228,7 @@ void animate(void)
 		variableX -= 0.001f;
 		variableY -= 0.001f;
 		variableZ -= 0.001f;
-		if (variableX <= 0.0f || variableY <= 0.0f || variableZ <= 0.0f) {
+		if (variableX <= 0.05f || variableY <= 0.05f || variableZ <= 0.05f) {
 			anochecer = true;
 		}
 	}
@@ -887,90 +887,87 @@ int main()
 		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[0].constant", 1.0f);
 		staticShader.setFloat("pointLight[0].linear", 0.009f);
-		staticShader.setFloat("pointLight[0].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[0].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[1].position", glm::vec3(-859.0f, 299.0f, 500.0f));  //luz lámpara alrededor (zona 1)
 		staticShader.setVec3("pointLight[1].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[1].constant", 1.0f);
 		staticShader.setFloat("pointLight[1].linear", 0.009f);
-		staticShader.setFloat("pointLight[1].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[1].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[2].position", glm::vec3(859.0f, 299.0f, -500.0f));    //luz lámpara alrededor (zona 2)
 		staticShader.setVec3("pointLight[2].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[2].constant", 1.0f);
 		staticShader.setFloat("pointLight[2].linear", 0.009f);
-		staticShader.setFloat("pointLight[2].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[2].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[3].position", glm::vec3(859.0f, 299.0f, 800.0f));     //luz lámpara alrededor (zona 2)
 		staticShader.setVec3("pointLight[3].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[3].constant", 1.0f);
 		staticShader.setFloat("pointLight[3].linear", 0.009f);
-		staticShader.setFloat("pointLight[3].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[3].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[4].position", glm::vec3(859.0f, 299.0f, -2100.0f));     //luz lámpara alrededor (zona 2)
 		staticShader.setVec3("pointLight[4].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[4].constant", 1.0f);
 		staticShader.setFloat("pointLight[4].linear", 0.009f);
-		staticShader.setFloat("pointLight[4].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[4].quadratic", 0.00032f);
 
 
 		staticShader.setVec3("pointLight[5].position", glm::vec3(600.0f, 299.0f, 1159.0f));     //luz lámpara alrededor (zona 3)
 		staticShader.setVec3("pointLight[5].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[5].constant", 1.0f);
 		staticShader.setFloat("pointLight[5].linear", 0.009f);
-		staticShader.setFloat("pointLight[5].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[5].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[6].position", glm::vec3(-600.0f, 299.0f, 1159.0f));     //luz lámpara alrededor (zona 3)
 		staticShader.setVec3("pointLight[6].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[6].constant", 1.0f);
 		staticShader.setFloat("pointLight[6].linear", 0.009f);
-		staticShader.setFloat("pointLight[6].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[6].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[7].position", glm::vec3(1391.0f, 299.0f, 2150.0f));     //luz lámpara alrededor (zona 3)
 		staticShader.setVec3("pointLight[7].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[7].constant", 1.0f);
 		staticShader.setFloat("pointLight[7].linear", 0.009f);
-		staticShader.setFloat("pointLight[7].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[7].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[8].position", glm::vec3(-1391.0f, 299.0f, 2150.0f));     //luz lámpara alrededor (zona 3)
 		staticShader.setVec3("pointLight[8].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[8].constant", 1.0f);
 		staticShader.setFloat("pointLight[8].linear", 0.009f);
-		staticShader.setFloat("pointLight[8].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[8].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[9].position", glm::vec3(600.0f, 299.0f, -1159.0f));     //luz lámpara alrededor (zona 4)
 		staticShader.setVec3("pointLight[9].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[9].constant", 1.0f);
 		staticShader.setFloat("pointLight[9].linear", 0.009f);
-		staticShader.setFloat("pointLight[9].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[9].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[10].position", glm::vec3(-600.0f, 299.0f, -1159.0f));     //luz lámpara alrededor (zona 4)
 		staticShader.setVec3("pointLight[10].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[10].constant", 1.0f);
 		staticShader.setFloat("pointLight[10].linear", 0.009f);
-		staticShader.setFloat("pointLight[10].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[10].quadratic", 0.00032f);
 
 		staticShader.setVec3("pointLight[11].position", glm::vec3(-1391.0f, 239.0f, -2150.0f));     //luz lámpara alrededor (zona 5)
 		staticShader.setVec3("pointLight[11].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[11].constant", 1.0f);
 		staticShader.setFloat("pointLight[11].linear", 0.009f);
-		staticShader.setFloat("pointLight[11].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[11].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[12].position", glm::vec3(-1400.0f, 415.0f, -255.0f));     //luz lámpara interna galeria
+		staticShader.setVec3("pointLight[12].position", glm::vec3(-1400.0f, 400.0f, -310.0f));     //luz lámpara interna galeria
 		staticShader.setVec3("pointLight[12].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[12].constant", 1.0f);
 		staticShader.setFloat("pointLight[12].linear", 0.009f);
-		staticShader.setFloat("pointLight[12].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[12].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[13].position", glm::vec3(-1420.0f, 515.0f, 355.0f));     //luz lámpara interna galeria
+		staticShader.setVec3("pointLight[13].position", glm::vec3(-1420.0f, 400.0f, 340.0f));     //luz lámpara interna galeria
 		staticShader.setVec3("pointLight[13].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[13].constant", 1.0f);
 		staticShader.setFloat("pointLight[13].linear", 0.009f);
-		staticShader.setFloat("pointLight[13].quadratic", 0.0000032f);
+		staticShader.setFloat("pointLight[13].quadratic", 0.00032f);
 
-
-		//Luces aun con errores a causa de un escalado mal hecho 
-		/*
 
 		staticShader.setVec3("pointLight[14].position", glm::vec3(1280.0f, 215.0f, -500.0f));     //luz lámpara interna casa 2 piso 1
 		staticShader.setVec3("pointLight[14].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
@@ -1008,41 +1005,41 @@ int main()
 		staticShader.setFloat("pointLight[19].linear", 0.009f);
 		staticShader.setFloat("pointLight[19].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[20].position", glm::vec3(1700.0f, 500.0f, -330.0f));     //luz lámpara interna casa 2 piso 2
+		staticShader.setVec3("pointLight[20].position", glm::vec3(1700.0f, 520.0f, -330.0f));     //luz lámpara interna casa 2 piso 2
 		staticShader.setVec3("pointLight[20].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[20].constant", 1.0f);
 		staticShader.setFloat("pointLight[20].linear", 0.009f);
 		staticShader.setFloat("pointLight[20].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[21].position", glm::vec3(1730.0f, 500.0f, 420.0f));     //luz lámpara interna casa 1 piso 2
+		staticShader.setVec3("pointLight[21].position", glm::vec3(1730.0f, 520.0f, 420.0f));     //luz lámpara interna casa 1 piso 2
 		staticShader.setVec3("pointLight[21].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[21].constant", 1.0f);
 		staticShader.setFloat("pointLight[21].linear", 0.009f);
 		staticShader.setFloat("pointLight[21].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[22].position", glm::vec3(1200.0f, 750.0f, -290.0f));     //luz lámpara interna casa 2 piso 3
+		staticShader.setVec3("pointLight[22].position", glm::vec3(1230.0f, 860.0f, -340.0f));     //luz lámpara interna casa 2 piso 3
 		staticShader.setVec3("pointLight[22].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[22].constant", 1.0f);
 		staticShader.setFloat("pointLight[22].linear", 0.009f);
 		staticShader.setFloat("pointLight[22].quadratic", 0.00032f);
-
-		staticShader.setVec3("pointLight[23].position", glm::vec3(1600.0f, 720.0f, -110.0f));     //luz lámpara interna casa 2 piso 3
+		
+		staticShader.setVec3("pointLight[23].position", glm::vec3(1640.0f, 860.0f, -90.0f));     //luz lámpara interna casa 2 piso 3
 		staticShader.setVec3("pointLight[23].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[23].constant", 1.0f);
 		staticShader.setFloat("pointLight[23].linear", 0.009f);
 		staticShader.setFloat("pointLight[23].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[24].position", glm::vec3(1210.0f, 750.0f, 400.0f));     //luz lámpara interna casa 1 piso 3
+		staticShader.setVec3("pointLight[24].position", glm::vec3(1210.0f, 860.0f, 340.0f));     //luz lámpara interna casa 1 piso 3
 		staticShader.setVec3("pointLight[24].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[24].constant", 1.0f);
 		staticShader.setFloat("pointLight[24].linear", 0.009f);
 		staticShader.setFloat("pointLight[24].quadratic", 0.00032f);
 
-		staticShader.setVec3("pointLight[25].position", glm::vec3(1620.0f, 750.0f, 670.0f));     //luz lámpara interna casa 1 piso 3
+		staticShader.setVec3("pointLight[25].position", glm::vec3(1640.0f, 860.0f, 690.0f));     //luz lámpara interna casa 1 piso 3
 		staticShader.setVec3("pointLight[25].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setFloat("pointLight[25].constant", 1.0f);
 		staticShader.setFloat("pointLight[25].linear", 0.009f);
-		staticShader.setFloat("pointLight[25].quadratic", 0.00032f);*/
+		staticShader.setFloat("pointLight[25].quadratic", 0.00032f);
 
 		staticShader.setFloat("material_shininess", 32.0f);
 
@@ -1579,8 +1576,8 @@ int main()
 		lampara.Draw(staticShader);
 
 		/************************************** Gallery *************************************/
-		model = glm::translate(model, glm::vec3(70.0f, 0.0f, -590.0f));
-		model = glm::scale(model, glm::vec3(1.7f));
+		model = glm::translate(model, glm::vec3(55.0f, 0.0f, -600.0f));
+		model = glm::scale(model, glm::vec3(2.1f));
 		model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		gallery.Draw(staticShader);
@@ -1590,23 +1587,23 @@ int main()
 		/************************************** Houses *************************************/
 
 		//House 1
-		model = glm::translate(model, glm::vec3(-100.0f, 0.0f, 540.0f));
-		model = glm::scale(model, glm::vec3(2.0f));
+		model = glm::translate(model, glm::vec3(-75.0f, 0.0f, 440.0f));
+		model = glm::scale(model, glm::vec3(2.2f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 2
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(49.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 3
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(49.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
 		//House 4
-		model = glm::translate(model, glm::vec3(65.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(49.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		house.Draw(staticShader);
 
