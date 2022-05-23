@@ -817,6 +817,8 @@ int main()
 	Model cuerpo("resources/objects/Christian/eagle/cuerpo.obj");
 	Model alaIzquierda("resources/objects/Christian/eagle/alaIzquierda.obj");
 	Model alaDerecha("resources/objects/Christian/eagle/alaDerecha.obj");
+	Model mesaExterior("resources/objects/Christian/mesaExterior/mesaExterior.obj");
+	Model banca("resources/objects/Christian/banca/banca.obj");
 	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
 	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
 	Model pato("resources/objects/Pablo/pato/pato.obj");
@@ -1420,12 +1422,12 @@ int main()
 		hojasCaidas.Draw(staticShader);
 
 		/****************************** ÁRBOLES ALREDEDOR *****************************/
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1300.0f, 0.0f, 1000.0f)); 		//árbol alrededor (zona 1)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1480.0f, 0.0f, 1250.0f)); 		//árbol alrededor (zona 1)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1600.0f, 0.0f, 1600.0f));			//árbol alrededor (zona 1)
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1720.0f, 0.0f, 1750.0f));			//árbol alrededor (zona 1)
 		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 		staticShader.setMat4("model", model);
 		ArbolVerde.Draw(staticShader);
@@ -1472,6 +1474,32 @@ int main()
 		staticShader.setMat4("model", model);
 		fuente.Draw(staticShader);
 
+		/************************************** BANCAS *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(316.0f, 0.0f, 406.0f));
+		model = glm::rotate(model, glm::radians(142.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(10.0f));
+		staticShader.setMat4("model", model);
+		banca.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(312.0f, 0.0f, -432.0f));
+		model = glm::rotate(model, glm::radians(216.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(10.0f));
+		staticShader.setMat4("model", model);
+		banca.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-330.0f, 0.0f, -420.0f));
+		model = glm::rotate(model, glm::radians(322.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(10.0f));
+		staticShader.setMat4("model", model);
+		banca.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-308.0f, 0.0f, 428.0f));
+		model = glm::rotate(model, glm::radians(396.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(10.0f));
+		staticShader.setMat4("model", model);
+		banca.Draw(staticShader);
+
+
 		/*************************************** PATO **************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(patoPos.x, 30.0f + patoPos.y, patoPos.z));
 		model = glm::rotate(model, glm::radians(270.0f + patoOrientacion), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1486,11 +1514,37 @@ int main()
 		staticShader.setMat4("model", model);
 		perro.Draw(staticShader);
 
+		/*************************************** Mesa Exterior *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1000.0f, 10.0f, 3600.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		mesaExterior.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 10.0f, 3600.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		mesaExterior.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1000.0f, 10.0f, 3600.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		mesaExterior.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(600.0f, 10.0f, 2200.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		mesaExterior.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-600.0f, 10.0f, 2200.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		mesaExterior.Draw(staticShader);
+
 		/************************************  Edificio *************************************/
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(850.0f, 0.0f, 2500.0f));
-		model = glm::scale(model, glm::vec3(8.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(800.0f, 0.0f, 2600.0f));
+		model = glm::scale(model, glm::vec3(7.5f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Edificio.Draw(staticShader);
@@ -1498,8 +1552,8 @@ int main()
 
 		/************************************  Kiosko *************************************/
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, 1900.0f));
-		model = glm::scale(model, glm::vec3(9.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, 2000.0f));
+		model = glm::scale(model, glm::vec3(11.0f));
 		model = glm::rotate(model, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Kiosko.Draw(staticShader);
