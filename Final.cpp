@@ -1983,12 +1983,12 @@ int main()
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 111.0f, -1025.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 112.0f, -1025.0f));
 		model = glm::scale(model, glm::vec3(27.0f));
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 111.0f, 555.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 112.0f, 555.0f));
 		model = glm::scale(model, glm::vec3(27.0f));
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
