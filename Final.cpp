@@ -2025,13 +2025,13 @@ int main()
 
 		//----------------------------------- door House ------------------------------------
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 105.0f, -1815.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 105.0f, -1811.5f));
 		model = glm::scale(model, glm::vec3(29.5f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 115.0f, -230.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 115.0f, -232.0f));
 		model = glm::scale(model, glm::vec3(27.0f));
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
@@ -2041,13 +2041,12 @@ int main()
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 112.0f, 555.0f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 112.0f, 559.0f));
 		model = glm::scale(model, glm::vec3(27.0f));
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
 
-
-
+		
 		//-------------------------------------------------------------------------------------
 		// draw skybox as last
 		// -------------------
