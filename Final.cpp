@@ -55,7 +55,7 @@ void getResolution(void);
 
 
 // camera
-Camera camera(glm::vec3(0.0f, 50.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 175.0f, 490.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -819,9 +819,11 @@ int main()
 	Model alaDerecha("resources/objects/Christian/eagle/alaDerecha.obj");
 	Model mesaExterior("resources/objects/Christian/mesaExterior/mesaExterior.obj");
 	Model banca("resources/objects/Christian/banca/banca.obj");
+	Model atril("resources/objects/Christian/atril/atril.obj");
 	Model Edificio("resources/objects/Diego/edificio/edificio.obj");
 	Model Kiosko("resources/objects/Diego/kiosko1/kiosko.obj");
 	Model pato("resources/objects/Pablo/pato/pato.obj");
+	Model MapaFrac("resources/objects/Pablo/MapaFrac/MapaFrac.obj");
 	ModelAnim personajeM("resources/objects/Christian/personajeM/personajeM.dae");
 	personajeM.initShaders(animShader.ID);
 	ModelAnim personajeH("resources/objects/Christian/personajeH/personajeH.dae");
@@ -1802,6 +1804,18 @@ int main()
 		model = glm::scale(model, glm::vec3(3.5f));
 		staticShader.setMat4("model", model);
 		fuente.Draw(staticShader);
+
+		/************************************** ATRIL *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 275.0f));
+		model = glm::scale(model, glm::vec3(3.0f));
+		staticShader.setMat4("model", model);
+		atril.Draw(staticShader);
+
+		/************************************** MAPA *************************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 275.0f));
+		model = glm::scale(model, glm::vec3(3.0f));
+		staticShader.setMat4("model", model);
+		MapaFrac.Draw(staticShader);
 
 		/************************************** BANCAS *************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(316.0f, 0.0f, 406.0f));
