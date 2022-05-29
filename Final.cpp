@@ -149,8 +149,8 @@ estadoAguila6 = false;
 //Walking Man
 int		walkManState = 0;
 float	walkManAngle = 270.0f,
-movWalkManX = 1150.0f,
-movWalkManZ = 500.0f,
+movWalkManX = 1020.0f,
+movWalkManZ = 353.0f,
 incremFactor = 6.0f;
 bool	turnOnWalkMan = true;
 
@@ -641,7 +641,7 @@ void animate(void)
 		if (walkManState == 0) {
 			movWalkManX -= incremFactor;
 			walkManAngle = 270.0f;
-			if (movWalkManX <= 1100) walkManState = 1;
+			if (movWalkManX <= 920) walkManState = 1;
 		}
 
 		if (walkManState == 1) {
@@ -653,7 +653,7 @@ void animate(void)
 		if (walkManState == 2) {
 			movWalkManX -= incremFactor;
 			walkManAngle = 270.0f;
-			if (movWalkManX <= -1100) walkManState = 3;
+			if (movWalkManX <= -950) walkManState = 3;
 		}
 
 		if (walkManState == 3) {
@@ -671,7 +671,7 @@ void animate(void)
 		if (walkManState == 5) {
 			movWalkManX -= incremFactor;
 			walkManAngle = 270.0f;
-			if (movWalkManX <= -1250) walkManState = 6;
+			if (movWalkManX <= -1100) walkManState = 6;
 		}
 
 		if (walkManState == 6) {
@@ -704,10 +704,10 @@ void animate(void)
 			if (movWalkManX >= 345) walkManState = 11;
 		}
 		if (walkManState == 11) {
-			movWalkManZ += 0.98170732f * 6.0f;
-			movWalkManX += 0.98170732f * 6.0f;
-			walkManAngle = 45.53f;
-			if (movWalkManX >= 1150 && movWalkManZ >= 500) walkManState = 0;
+			movWalkManZ += 0.7164 * 6.0f;
+			movWalkManX += 0.7164 * 6.0f;
+			walkManAngle = 59.66f;
+			if (movWalkManX >= 800 && movWalkManZ >= 350) walkManState = 0;
 		}
 	}
 
