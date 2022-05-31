@@ -831,9 +831,11 @@ int main()
 	//Gallery
 	Model gallery("resources/objects/Elizabeth/galeria/galeria.obj");
 	Model doorGallery("resources/objects/Elizabeth/puerta_galeria/puerta_galeria.obj");
+	Model letreroGaleria("resources/objects/Elizabeth/mapas_casa_galeria/mapa_galeria.obj");
 	//House
 	Model house("resources/objects/Elizabeth/casa4x4/casa4x4.obj");
 	Model doorHouse("resources/objects/Elizabeth/puerta_casa/puerta_casa.obj");
+	Model letreroCasa4x4("resources/objects/Elizabeth/mapas_casa_galeria/mapa_casa4x4.obj");
 	//Walking man
 	ModelAnim walkingMan("resources/objects/Juan/walking_man/Walking.dae");
 	walkingMan.initShaders(animShader.ID);
@@ -888,7 +890,7 @@ int main()
 		//staticShader.setVec3("dirLight.ambient", glm::vec3(0.5f, 0.5f, 0.5f));
 		staticShader.setVec3("dirLight.diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("dirLight.specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		
+
 		staticShader.setVec3("pointLight[0].position", glm::vec3(-859.0f, 290.0f, -500.0f));  //luz lámpara alrededor (zona 1)
 		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("pointLight[0].ambient", glm::vec3(0.9f, 0.9f, 0.9f));
@@ -1065,7 +1067,7 @@ int main()
 		staticShader.setFloat("pointLight[22].constant", 1.0f);
 		staticShader.setFloat("pointLight[22].linear", 0.009f);
 		staticShader.setFloat("pointLight[22].quadratic", 0.00032f);
-		
+
 		staticShader.setVec3("pointLight[23].position", glm::vec3(1640.0f, 810.0f, -90.0f));     //luz lámpara interna casa 2 piso 3
 		staticShader.setVec3("pointLight[23].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("pointLight[23].specular", glm::vec3(1.0f, 1.0f, 1.0f));
@@ -1098,7 +1100,7 @@ int main()
 		staticShader.setFloat("spotLight[0].linear", 0.0009f);
 		staticShader.setFloat("spotLight[0].quadratic", 0.0005f);
 
-		staticShader.setVec3("spotLight[1].position", glm::vec3 (- 859.0f, 20.0f, 500.0f));
+		staticShader.setVec3("spotLight[1].position", glm::vec3(-859.0f, 20.0f, 500.0f));
 		staticShader.setVec3("spotLight[1].direction", glm::vec3(0.0f, -1.0f, 0.0f));
 		staticShader.setVec3("spotLight[1].ambient", glm::vec3(1.0f, 1.0f, 1.0f));
 		staticShader.setVec3("spotLight[1].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
@@ -2029,7 +2031,7 @@ int main()
 		staticShader.setMat4("model", model);
 		alaDerecha.Draw(staticShader);
 
-		//----------------------------------- door Gallery ------------------------------------
+		/************************************** Door Gallery *************************************/
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-1000.0f, 2.0f, -78.0f));
 		model = glm::scale(model, glm::vec3(7.1f));
@@ -2037,7 +2039,23 @@ int main()
 		staticShader.setMat4("model", model);
 		doorGallery.Draw(staticShader);
 
-		//----------------------------------- door House ------------------------------------
+		/************************************** Letero Gallery *************************************/
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-850.0f, 0.0f, -28.0f));
+		model = glm::scale(model, glm::vec3(5.3f));
+		model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		letreroGaleria.Draw(staticShader);
+
+		/************************************** Letero House *************************************/
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(1080.0f, 0.0f, 470.5f));
+		model = glm::scale(model, glm::vec3(5.3f));
+		model = glm::rotate(model, glm::radians(130.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		letreroCasa4x4.Draw(staticShader);
+
+		/************************************** Door House *************************************/
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(1145.0f, 105.0f, -1811.5f));
 		model = glm::scale(model, glm::vec3(29.5f));
@@ -2060,7 +2078,7 @@ int main()
 		staticShader.setMat4("model", model);
 		doorHouse.Draw(staticShader);
 
-		
+
 		//-------------------------------------------------------------------------------------
 		// draw skybox as last
 		// -------------------
