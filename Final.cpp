@@ -836,6 +836,9 @@ int main()
 	Model house("resources/objects/Elizabeth/casa4x4/casa4x4.obj");
 	Model doorHouse("resources/objects/Elizabeth/puerta_casa/puerta_casa.obj");
 	Model letreroCasa4x4("resources/objects/Elizabeth/mapas_casa_galeria/mapa_casa4x4.obj");
+	Model cartelAreasVerdes("resources/objects/Elizabeth/mapas_casa_galeria/cartelAreasVerdes.obj");
+	Model cartelEdificaciones("resources/objects/Elizabeth/mapas_casa_galeria/cartelEdificaciones.obj");
+	Model cartelTransporte("resources/objects/Elizabeth/mapas_casa_galeria/cartelTransporte.obj");
 	//Walking man
 	ModelAnim walkingMan("resources/objects/Juan/walking_man/Walking.dae");
 	walkingMan.initShaders(animShader.ID);
@@ -1819,6 +1822,27 @@ int main()
 		staticShader.setMat4("model", model);
 		MapaFrac.Draw(staticShader);
 
+		/*********************************** CARTEL ÁREAS VERDES ********************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(130.0f, 0.0f, -370.0f));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.3f));
+		staticShader.setMat4("model", model);
+		cartelAreasVerdes.Draw(staticShader);
+
+		/*********************************** CARTEL TRANSPORTE ********************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-350.0f, 0.0f, -1200.0f));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.3f));
+		staticShader.setMat4("model", model);
+		cartelTransporte.Draw(staticShader);
+
+		/*********************************** CARTEL EDIFICACIONES ********************************/
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-250.0f, 0.0f, 1350.0f));
+		model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.3f));
+		staticShader.setMat4("model", model);
+		cartelEdificaciones.Draw(staticShader);
+
 		/************************************** BANCAS *************************************/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(316.0f, 0.0f, 406.0f));
 		model = glm::rotate(model, glm::radians(142.5f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1897,7 +1921,7 @@ int main()
 		/************************************  Kiosko *************************************/
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, 2000.0f));
-		model = glm::scale(model, glm::vec3(11.0f));
+		model = glm::scale(model, glm::vec3(9.0f));
 		model = glm::rotate(model, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		Kiosko.Draw(staticShader);
