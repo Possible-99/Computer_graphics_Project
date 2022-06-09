@@ -1,6 +1,8 @@
 # Computer_graphics_Project
 
-Professor : ING. LUIS SERGIO VALENCIA CASTRO
+Professors : 
+* ING. LUIS SERGIO VALENCIA CASTRO
+* M.I. SERGIO TEODORO VITE
 
 ## Team Members:
 * González Blando Pablo
